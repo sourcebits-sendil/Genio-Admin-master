@@ -1,0 +1,45 @@
+.job-detail {
+    float: left;
+    width: 100%;
+    font-family: mullerregular_7;
+    .content {
+        margin-top: 20px;
+        padding-bottom: 40px;
+    }
+    .user-card,
+    .job {
+        box-shadow: 0 0 10px #B4B4B4;
+        background-color: #FFF;
+        margin: 10px;
+        border-radius: 5px;
+        h4 {
+            word-wrap: break-word;
+        }
+        label {
+            color: rgb(187, 187, 187);
+        }
+        .invoice> * {
+            margin-bottom: 20px;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            float: left;
+            margin-right: 10px
+        }
+    }
+    .job {
+        padding: 20px;
+        min-width: 350px;
+    }
+    .users {
+        min-width: 300px;
+    }
+    .modal-footer a {
+        margin-top: 15px;
+    }
+    .settlement {
+        background-color: #B397C7;
+    }
+}

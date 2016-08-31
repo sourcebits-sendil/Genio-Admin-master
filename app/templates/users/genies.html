@@ -1,0 +1,434 @@
+<div ui-view  class="users" ng-controller="userCtrl">
+
+  <div class="btn-group">
+    <button type="button" class="btn btn-blue">ALL USERS</button>
+    <button type="button" class="btn btn-blue">GENIES</button>
+    <button type="button" class="btn btn-blue">CUSTOMERS</button>
+    <button type="button" class="btn btn-blue">BANNED</button>
+  </div>
+
+
+  <button type="button" class="btn btn-purple action pull-right" ng-click="toast()"> EDIT ALL</button>
+
+  <button  ui-sref=".add-new-expert" type="button" class="btn btn-purple action pull-right"> ADD A NEW EXPERT </button>
+  <div id="mainbox">
+    <div class="user-card" ng-repeat="expert in experts">
+      <div class="card-header"></div>
+      <div class="card-top">
+          <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <!-- <img ng-src="{{expert.external_user_identifiers[0].image_uri}}" alt="" /> -->
+        <div class="user-name">
+          {{expert.username}}
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        {{text | limitTo: 120}}
+
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> {{expert.phone | tel}}
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div title="{{expert.external_user_identifiers[0].email}}">
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>{{expert.email | limitTo: 17}}
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+
+    <div class="user-card">
+      <div class="card-header"></div>
+      <div class="card-top">
+        <img src="images/Avatars/card-small-avatar-50x50.png" alt="" />
+        <div class="user-name">
+          LINDA KOSICHKINA
+          <div> Today 12:30 pm</div>
+        </div>
+        <div>
+          <button type="button" class="btn btn-purple pull-right">EDIT</button>
+        </div>
+      </div>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      </p>
+      <div class="jobs">JOBS</div>
+      <div class="jobs-wrap">
+        <div class="completed">Completed
+          <p>
+            146
+          </p>
+        </div>
+        <div class="failed">Failed
+          <p>
+            13
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/phone-icon-small-20x20.png">
+        </div> 222-222-2222
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div>
+      <div class="contact">
+        <div>
+          <img src="images/icons/mail-icon-small-20x20.png">
+        </div>helloitsme@gmail.com
+      </div>
+    </div>
+
+
+  </div>
+</div>

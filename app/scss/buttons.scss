@@ -1,0 +1,195 @@
+//-------------------
+//CUSTOM BUTTONS
+//------------------
+.btn {
+    border: 1px solid #C8C8C8;
+    font-family: mullerregular_13;
+    font-size: 10px;
+    padding: 10px 25px;
+    letter-spacing: 2px;
+}
+
+//DEFAULT buttons under a button group
+.btn-group >.btn {
+    border: 1px solid #C8C8C8;
+    font-family: mullerregular_13;
+    font-size: 10px;
+    padding: 10px 25px;
+    letter-spacing: 2px;
+}
+
+.btn-blue {
+    color: #838D8F;
+    background-color: #fff;
+    border-color: #C8C8C8;
+}
+
+//Button group buttons
+.btn-blue:focus,
+.btn-blue.focus,
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue.active,
+.open > .dropdown-toggle.btn-blue {
+    color: #fff;
+    background-color: #8881F8;
+    border-color: #8881F8;
+}
+
+.btn-blue:active:hover,
+.btn-blue.active:hover,
+.open > .dropdown-toggle.btn-blue:hover,
+.btn-blue:active:focus,
+.btn-blue.active:focus,
+.open > .dropdown-toggle.btn-blue:focus,
+.btn-blue:active.focus,
+.btn-blue.active.focus,
+.open > .dropdown-toggle.btn-blue.focus {
+    color: #fff;
+    background-color: #C8C8C8;
+    border-color: #C8C8C8;
+}
+
+//Global purple buttons
+.btn-purple {
+    color: #8881F8;
+    background-color: #fff;
+    border: 2px solid #8881F8;
+    font-size: 12px;
+    padding: 8px 30px;
+    border-radius: 30px;
+}
+
+.btn-purple:hover:disabled {
+    color: #8881F8;
+}
+
+.btn-purple:focus,
+.btn-purple.focus,
+.btn-purple:hover:enabled,
+.btn-purple:active,
+.btn-purple.active,
+.open > .dropdown-toggle.btn-purple {
+    color: #fff;
+    background-color: #8881F8;
+    border-color: #8881F8;
+}
+
+.btn-purple:active:hover,
+.btn-purple.active:hover,
+.open > .dropdown-toggle.btn-purple:hover,
+.btn-purple:active:focus,
+.btn-purple.active:focus,
+.open > .dropdown-toggle.btn-purple:focus,
+.btn-purple:active.focus,
+.btn-purple.active.focus,
+.open > .dropdown-toggle.btn-purple.focus {
+    color: #fff;
+    background-color: #C8C8C8;
+    border-color: #C8C8C8;
+}
+
+
+//Global black buttons
+.btn-black {
+    color: #000000;
+    background-color: #fff;
+    border: 2px solid #000000;
+    font-size: 12px;
+    padding: 8px 30px;
+    border-radius: 30px;
+}
+
+.btn-black:hover:disabled {
+    color: #000000;
+}
+
+.btn-black:focus,
+.btn-black.focus,
+.btn-black:hover:enabled,
+.btn-black:active,
+.btn-black.active,
+.open > .dropdown-toggle.btn-black {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.btn-black:active:hover,
+.btn-black.active:hover,
+.open > .dropdown-toggle.btn-black:hover,
+.btn-black:active:focus,
+.btn-black.active:focus,
+.open > .dropdown-toggle.btn-black:focus,
+.btn-black:active.focus,
+.btn-black.active.focus,
+.open > .dropdown-toggle.btn-black.focus {
+    color: #fff;
+    background-color: #C8C8C8;
+    border-color: #C8C8C8;
+}
+
+//----------
+//SELECT DROPDOWN
+//----------
+.custom-select:focus {
+    outline: none;
+}
+
+.custom-select {
+    width: 225px;
+    height: 35px;
+    border: 0;
+    border: 2px solid #8881F8;
+    background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+    background-size: 20px;
+    background-position: right 10px center;
+    font-family: 'mullerregular_13';
+    font-size: 16px;
+    padding-left: 24px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+//---------------
+//Custom Search 
+//---------------
+#custom-search-input {
+    border: 2px solid #8881F8;
+    border-radius: 6px;
+    background-color: #fff;
+    width: 225px;
+}
+
+#custom-search-input input {
+    border: 0;
+    height: 31px;
+    box-shadow: none;
+    font-size: 16px;
+    font-family: 'mullerregular_13';
+}
+
+#custom-search-input form {
+    display: table;
+}
+
+#custom-search-input button {
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 2px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover {
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search {
+    font-size: 16px;
+    color: #8881F8;
+}

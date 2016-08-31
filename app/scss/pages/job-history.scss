@@ -1,0 +1,35 @@
+.job-history {
+    float: left;
+    width: 100%;
+    .content{
+    overflow-y: scroll;
+   
+    padding-bottom: 40px;
+    }
+
+    table {
+        font-family: mullerregular_9;
+        font-size: 16px;
+        width: 100%;
+        thead {
+         font-family: mullerregular_9;
+             font-weight: bold;
+            height: 100px;
+            tr{
+             background: #E9E7F9;
+            }
+        }
+        tr{
+            background-color: #fff;
+            border-left: solid 1px #DDDDDD;
+    		border-right: solid 1px #DDDDDD;
+        }
+        .record:hover{
+        	border: solid 2px #DDDDDD;
+        	border-left: solid 1px #000000;
+    		border-right: solid 1px #000000;
+        }
+    }
+
+    
+}

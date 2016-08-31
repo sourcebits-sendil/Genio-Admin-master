@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html ng-app="genioAdmin">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genio Admin Panel</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.css">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+  <toaster-container></toaster-container>
+  <div class="overlay" ng-show="loader">
+    <div class="kart-loader">
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    	<div class="sheath">
+    			<div class="segment"></div>
+    	</div>
+    </div>
+  </div>
+
+    <section class="section-app" ui-view>
+    </section>
+
+    <!-- JS files -->
+    <script src="js/bower.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.16/toaster.min.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

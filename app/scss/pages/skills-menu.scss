@@ -1,0 +1,213 @@
+    /* SKILLS MENU*/
+    
+    .skills-menu {
+        overflow-y: scroll;
+        font-family: mullerregular_7;
+        color: rgb(86, 90, 92);
+        .panel-default > .panel-heading {
+            color: rgb(86, 90, 92);
+            background-color: white;
+            border-color: rgba( 0, 0, 0, .08);
+            height: 60px;
+            border-radius: 30px;
+        }
+        .panel-title {
+            font-size: 20px;
+            padding: 10px 10px 10px 15px;
+        }
+        .panel-title *:focus {
+            outline: none;
+        }
+        .panel-default > .panel-heading + .panel-collapse > .panel-body {
+            border-top-color: #fff;
+            padding: 10px 30px;
+            font-family: mullerregular_7;
+        }
+        .table-responsive {
+            border-radius: 3px;
+            height: 190px;
+            margin-bottom: 20px;
+        }
+        .table-bordered {
+            border: 1px solid #c4c4c4;
+        }
+        .table-bordered > thead > tr > th {
+            font-family: mullerregular_3;
+        }
+        .table-bordered > thead > tr > th,
+        .table-bordered > thead > tr > td {
+            border-bottom-width: 0px;
+            background-color: rgb(235, 235, 235);
+            border: 1px solid #c4c4c4;
+            padding: 5px 10px;
+        }
+        .table-bordered > tbody > tr > td {
+            border: 1px solid #c4c4c4;
+            color: #000;
+            padding: 15px 10px;
+
+            &.delete-job{
+            color:#d9534f;
+           cursor: pointer;
+            }
+
+            &.edit-job{
+            color: #8881F8;
+            cursor: pointer;
+            }
+            &.save{
+             color: black;
+            }
+        }
+        .editable {
+            padding: 0px !important;
+            cursor: pointer;
+            div {
+                cursor: default;
+                height: 51px;
+                width: 100%;
+                line-height: 2.5;
+                padding: 10px;
+            }
+             input {
+                padding: 10px;
+                height: 51px;
+                width: 100%;
+                border: 0px;
+                outline: none;
+                 background-color: rgba(135, 125, 251, 0.1);
+            }
+            input:focus {
+                padding: 10px;
+                height: 51px;
+                width: 100%;
+                border: 2px solid #8881F8;
+                background-color: rgba(135, 125, 251, 0.1);
+            }
+        }
+        .text {
+            color: rgba(0, 0, 0, 0.6);
+            font-family: mullerregular_3;
+        }
+        .input-group-lg > .input-group-btn > .btn {
+            border-radius: 3px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            letter-spacing: 0px;
+            background-color: rgb( 190, 195, 200);
+            font-family: mullerregular_7;
+            color: #fff;
+            font-size: 16px;
+        }
+        .input-group-lg > .form-control {
+            border-radius: 3px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            font-family: mullerregular_7;
+            font-size: 16px;
+        }
+        .input-group-btn:not(:first-child):not(:last-child) {
+            border-top: 1px solid #C8C8C8;
+            border-bottom: 1px solid #C8C8C8;
+            border-right: 1px solid #C8C8C8;
+            padding: 0px 40px;
+        }
+        .input-group {
+            select {
+                border: none;
+                height: 44px;
+                width: auto;
+                box-shadow: none;
+            }
+        }
+        input.ng-invalid.ng-dirty {
+            background: #F9D6DB;
+        }
+        .btn-primary {
+            background-color: #8881F8;
+        }
+        .btn-group {
+            width: 100%;
+            .btn.btn-primary {
+                width: 50%;
+                border: 1px solid rgb(194, 194, 194);
+                font-family: mullerregular_7;
+                font-size: 14px;
+                padding: 15px 25px;
+                letter-spacing: 0px;
+                background-color: #fff;
+                color: #8881F8;
+                margin-bottom: 15px;
+            }
+            .btn-primary:focus,
+            .btn-primary.active,
+            .btn-primary.focus {
+                color: #fff;
+                background-color: #8881F8;
+                box-shadow: none;
+            }
+        }
+        .services {
+            select {
+                min-height: 170px;
+                padding: 6px 0px;
+                color: #000;
+                margin: 10px 0px;
+                option {
+                    font-size: 15px;
+                    padding: 10px;
+                }
+            }
+        }
+        .mover {
+            margin-top: 75px;
+            .btn {
+                border: 1px solid #8881F8;
+                font-size: 20px;
+                padding: 2px 4px;
+                letter-spacing: 2px;
+                margin: 5px;
+                line-height: 1;
+            }
+        }
+        label {
+            font-weight: normal;
+            font-size: 15px;
+            font-family: mullerregular_7;
+            color: #000;
+            margin: 10px 0px
+        }
+        .service-rates {
+            .form-control {
+                margin: -7px auto;
+                border: none;
+                box-shadow: none;
+            }
+            .form-control:focus {
+                box-shadow: none;
+            }
+        }
+        .footer {
+            background-color: rgb(244, 244, 244);
+            margin: -10px -30px;
+            height: 75px;
+            padding: 15px 30px;
+            label {
+                margin: 0px 15px;
+                font-size: 16px;
+                small {
+                    font-family: mullerregular_3;
+                }
+            }
+            .btn {
+                font-size: 16px;
+                font-family: mullerregular_7;
+                letter-spacing: 0px;
+                padding: 10px 40px;
+            }
+            .btn-default {
+                background-color: rgb(190, 195, 200);
+                color: #fff;
+            }
+        }
+    }

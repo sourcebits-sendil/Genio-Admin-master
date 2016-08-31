@@ -1,0 +1,367 @@
+/*-------------------------------------------------
+SMACSS: LAYOUT - COMMON
+-------------------------------------------------*/
+ .container {
+    width: auto !important;
+    }
+.load-more {
+    width: 100%;
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - SECTION
+-------------------------------------------------*/
+
+.section-app {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - FOOTER
+-------------------------------------------------*/
+
+footer {
+    color: #5A5F62;
+    font-size: 11px;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    a {
+        color: #5A5F62;
+        &:hover {
+            color: #ced9e0;
+        }
+    }
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - DASHBOARD
+-------------------------------------------------*/
+
+.dashboard-layout {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - HEADER
+-------------------------------------------------*/
+
+.content-header {
+    background-color: #2B303B;
+    margin: -15px -20px;
+    padding: 15px;
+    height: 65px;
+    margin-bottom: 10px;
+    label{
+    color:#fff;
+    }
+
+}
+
+header {
+    background: #fff;
+    height: 90px;
+    width: 100%;
+    padding-left: 350px;
+    .page-lable {
+        margin: 30px 0 0 25px;
+        display: inline-flex;
+        font-size: 20px;
+        text-transform: capitalize;
+        font-family: mullerregular_13;
+        color: #B3B3B3;
+    }
+ 
+    .admin-identity {
+        float: right;
+        position: relative;
+    }
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - DASHBOARD-MENU
+-------------------------------------------------*/
+
+.dashboard-side-menu-container {
+    background: #2B303B;
+    width: 350px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    .dashboard-user-menu {
+        text-align: center;
+        width: 100%;
+        height: 360px;
+        background-color: #21242D;
+        padding: 30px;
+        .brand-label {
+            color: #fff;
+            font-size: 30px;
+            font-family: mullerregular_13;
+        }
+        .user-profile {
+            margin-top: 35px;
+            .user-photo {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+            }
+            .user-settings {
+                position: absolute;
+                
+                padding: 10px;
+                border-radius: 50%;
+                right: 90px;
+
+                img{
+                width: 40px;
+                height: 40px;
+                }
+            }
+        }
+        .user-name {
+            color: white;
+            margin-top: 10px;
+            font-weight: inherit;
+            font-family: mullerregular_17;
+            font-size: 16px;
+        }
+        .user-email {
+            color: #63656C;
+            font-family: mullerregular_7;
+            font-weight: bold;
+            font-size: 12px;
+        }
+    }
+    .gap {
+        height: 50px;
+        background-color: #2B303B;
+    }
+    .dashboard-side-menu {
+        li {
+            a {
+                color: #fff;
+                font-size: 20px;
+                display: block;
+                font-family: mullerregular_3;
+                font-weight: bold;
+                padding: 12px 15px 12px 34px;
+                &:hover,
+                &.current {
+                    text-decoration: none;
+                    background: #8881F8;
+                    color: #fff;
+                    img {
+                        background-color: #6C66B6;
+                    }
+                }
+                img {
+                    vertical-align: middle;
+                    display: inline-block;
+                    margin-right: 25px;
+                    border-radius: 50%;
+                    background-color: #21242D;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+/*-------------------------------------------------
+SMACSS: LAYOUT - DASHBOARD CONTENT AREA
+-------------------------------------------------*/
+
+.content-area {
+    @include clearfix();
+    padding: 25px 35px;
+    background-color: #F4F4F4;
+    display: block;
+    // overflow-y: scroll;
+    position: absolute;
+    left: 350px;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+}
+
+
+/*-------------------------------------------------
+SMACSS: SETTINGS  POPOVER
+-------------------------------------------------*/
+
+.popover-content {
+    padding: 5px 50px 10px 10px !important;
+    color: #8881F8;
+    font-family: mullerregular_3;
+    font-weight: bold;
+    font-size: 18px;
+    div {
+        padding: 10px;
+        cursor: pointer;
+    }
+    img {
+        margin-right: 5px;
+    }
+}
+
+
+/*-------------------------------------------------
+SMACSS: BACK to previous menu button
+-------------------------------------------------*/
+
+.back-btn {
+    font-family: mullerregular_8;
+    font-size: 25px;
+    color: #fff;
+   
+    img {
+        margin-right: 10px;
+    }
+}
+.back-btn:hover{
+        font-weight: bold;
+        }
+
+
+/*-------------------------------------------------
+SMACSS: Search Box
+-------------------------------------------------*/
+
+input.search-query {
+    border: 2px solid #8881F8;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: mullerregular_13;
+    width: 225px;
+    height: 35px;
+    padding-left: 10px;
+}
+
+input.search-query:focus {
+    outline: none;
+    border-bottom: 3px solid #8881F8;
+}
+
+form.form-search {
+    margin-left: 10px;
+}
+
+
+/*-------------------------------------------------
+SMACSS: MEDIA QUERIES
+-------------------------------------------------*/
+
+@media only screen and (max-width: 2048px) {
+
+    header {
+        height: 70px;
+        padding-left: 270px;
+        .page-lable {
+            margin: 25px 0 0 20px;
+            font-size: 20px;
+        }
+        input.search-query {
+            padding-left: 25px;
+            font-size: 14px;
+            padding-bottom: 10px;
+            width: 250px;
+        }
+        form.form-search {
+            padding: 25px 20px;
+        }
+    }
+    .dashboard-side-menu-container {
+        width: 270px;
+        .dashboard-user-menu {
+            height: 270px;
+            padding: 25px;
+            .brand-label {
+                font-size: 25px;
+            }
+            .user-profile {
+                margin-top: 30px;
+                .user-photo {
+                    width: 120px;
+                    height: 120px;
+                }
+                .user-settings {
+                    padding: 5px;
+                    right: 65px;
+                }
+            }
+            .user-name {
+                margin-top: 10px;
+                font-size: 14px;
+            }
+            .user-email {
+                font-size: 12px;
+            }
+        }
+        .gap {
+            height: 30px;
+        }
+        .dashboard-side-menu {
+            li {
+                a {
+                    font-size: 16px;
+                    padding: 8px 10px 8px 30px;
+                    img {
+                        margin-right: 25px;
+                        border-radius: 50%;
+                        height: 35px;
+                        width: 35px;
+                    }
+                }
+            }
+        }
+    }
+    .content-area {
+        padding: 15px 20px;
+        left: 270px;
+        top: 0px;
+    }
+    .popover-content {
+        padding: 5px 50px 10px 10px !important;
+        font-size: 18px;
+        div {
+            padding: 10px;
+        }
+        img {
+            margin-right: 5px;
+        }
+    }
+}
+
+
+/*SORT*/
+
+.sortorder:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
+}

@@ -1,0 +1,58 @@
+<!-- Sidebar section -->
+<div ng-controller="sidebarCtrl" class="dashboard-side-menu-container">
+    <div class="dashboard-user-menu">
+        <div class="brand-label"><img src="images/icons/genioLogo@2x.png"></div>
+        <div class="user-profile">
+            <img class="user-photo" src='images/Avatars/profile-photo-150x150.png'>
+            <a class="user-settings" uib-popover-template="settingsPopover.templateUrl" popover-is-open="isOpen" popover-trigger="outsideClick focus"  popover-placement='right-top' popover-append-to-body='true' type="button">
+                <img src='images/icons/settings-icon.png'>
+            </a>
+        </div>
+      <div class="user-name">Genio Admin</div>
+     <!--      <div class="user-email">JAMES@GENIE.COM
+            <a>
+                <img src='images/icons/sign-out-icon-gray.png' alt="Logout" ng-click="logout()">
+            </a>
+        </div> -->
+    </div>
+    <!-- <div class="gap"></div> -->
+    <ul class="dashboard-side-menu">
+        <li>
+            <a ui-sref=".dashboard" ng-class="{'current':currentState.indexOf('dashboard')>1}">
+                <img src="images/icons/icon-dashboard.png" /> Dashboard</a>
+        </li>
+         <li>
+            <a ui-sref=".skills" ng-class="{'current':currentState.indexOf('skills')>1}">
+                <img src="images/icons/icon-manage.png" /> Manage</a>
+        </li>
+        <li>
+            <a ui-sref=".job-history" ng-class="{'current':currentState.indexOf('job-history')>1}">
+                <img src="images/icons/icon-jobs.png" /> Job History</a>
+        </li>
+
+        <!-- <li>
+			<a ui-sref=".feedback" ng-class="{'current':currentState.indexOf('feedback')>1}">
+				<img src="images/icons/icon-feedback.png" /> Feedback</a>
+		</li>
+		<li>
+			<a ui-sref=".requests" ng-class="{'current':currentState.indexOf('requests')>1}">
+				<img src="images/icons/icon-requests.png" /> Requests</a>
+		</li> -->
+        <li>
+            <a ui-sref=".genies" ng-class="{'current':currentState.indexOf('genies')>1}">
+                <img src="images/icons/icon-genies.png" /> Genies <span class="vnav-counter">45</span></a>
+        </li>
+        <li>
+            <a ui-sref=".customers" ng-class="{'current':currentState.indexOf('customers')>1}">
+                <img src="images/icons/icon-customers.png" /> Customers</a>
+        </li>
+    </ul>
+</div>
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <div ng-click="gotoChangePassword()">
+        <img src="images/icons/change-pass-icon.png" > Change password </div>
+   <!--  <div>
+        <img src="images/icons/settings-icon-blue.png"> Settings </div> -->
+    <div ng-click="logout()">
+        <img src="images/icons/signout-icon.png"> Signout </div>
+</script>

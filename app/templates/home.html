@@ -1,0 +1,39 @@
+<div class="content-header">
+</div>
+<div class="container dashboard" ng-style="style()" resize>
+    <div class="row">
+        <div class="col-md-6">
+         <h3>Users
+         <small ng-if="userBalance.expertCount == 0  && userBalance.consumerCount == 0" >
+         Chart will be displayed once we have at least one user.</small> 
+         </h3>
+            <div class="card" google-chart chart="users" style="height:300px; width:100%;"></div>
+        </div>
+        <div class="col-md-6">
+         <h3>Jobs
+          <small ng-if="jobsBalance.totServiceReqCount == 0 && jobsBalance.completedSerReqCount == 0 && jobsBalance.cancelledSerReqCount == 0 " >Chart will be displayed once we have at least one job</small> 
+          </h3>
+            <div class="card" google-chart chart="jobs" style="height:300px; width:100%;"></div>
+        </div>
+   
+    	<div class="col-md-6">
+         <h3>Services Trend 
+         <small ng-if="serviceData.length<1" >Stats not available</small>
+         </h3>
+    		 <div class="card" google-chart chart="services" style="height:400px; width:100%;">Stats not available</div>
+    	</div>
+        <div class="col-md-6">
+         <h3>Popular Job Types 
+          <small ng-if="jobsData.length<1" >Stats not available</small>
+          </h3>
+             <div  class="card" google-chart chart="jobTypes" style="height:400px; width:100%;"></div>
+        </div>
+        <div class="col-md-12">
+        <h3>Active Experts({{myChartObject.data.length-1}})
+         <small ng-if="expertsGeolocation.length<1" >No Active users available, Please refresh the page after sometime.</small> 
+         </h3>
+             <div class="card" google-chart chart="myChartObject" style="height:400px; width:100%;"></div>
+        </div>
+       
+    </div>
+</div>

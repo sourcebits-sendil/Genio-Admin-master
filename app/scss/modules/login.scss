@@ -1,0 +1,82 @@
+/*-------------------------------------------------
+SMACSS: MODULE - LOGIN
+-------------------------------------------------*/
+.login-bg {
+  background: url(../images/panes/signin-background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  .login-container {
+    width: 550px;
+    height: 500px;
+    margin: auto;
+    position: relative;
+    top: 200px;
+    background: #fff;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 8px 10px #CDCDCD, -10px 8px 15px #CDCDCD, 10px 8px 15px #CDCDCD;
+    .brand-label {
+      font-size: 20px;
+      font-weight: bold;
+      padding-top: 30px;
+      font-family: 'mullerregular_7';
+    }
+    .signin-label {
+      font-size: 70px;
+      margin-bottom: 25px;
+      font-family: "mullerhairlinebold";
+      font-weight: bold;
+    }
+    .reset-pwd{
+      font-size: 40px;
+      margin: 40px auto;
+    }
+    .form-control {
+      width: 350px;
+      height: 40px;
+      text-align: center;
+      font-size: 15px;
+      background-color: #EEEEEE;
+      border: none;
+      box-shadow: none;
+      font-family: "mullerregular_7";
+      font-weight: lighter;
+    }
+    .btn-login {
+      margin: 20px;
+      background-color: #8881F8;
+      color: #fff;
+      border-color: #8881F8;
+      font-size: 14px;
+      border-radius: 30px;
+			font-family: "mullerregular_13";
+      font-weight: lighter;
+      width: 250px;
+    }
+		a{
+			color: #515356;
+			font-size: 12px;
+font-family: "mullerregular_13";
+		}
+  }
+}
+& .change-pwd{
+ background: none;
+ .login-container{
+ height: auto;
+     padding: 20px;
+    padding-top: 50px;
+    top: 90px;
+
+  p{margin: 20px 10px;}   
+
+  input.ng-dirty.ng-invalid{
+  background-color: lightpink !important;
+  }
+  label{font-family: "mullerregular_3";}
+ }
+}

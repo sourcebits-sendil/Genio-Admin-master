@@ -1,0 +1,36 @@
+<!-- ************************ -->
+<!-- JOB-HISTORY -->
+<!-- *********************** -->
+	
+<div class=" job-history" ng-controller="jobhistoryCtrl">
+ <div class="content-header">
+   
+	</div>
+<div class="content" ng-style="style()" resize>
+<h3 ng-show="noData">It seems there is no job assigned yet.</h3>
+
+	<table ng-table="tableParams"  class="table" show-filter="true" ng-hide="noData">
+        <tr ng-repeat="order in $data" class="text-center record">
+            <td data-title="'OrderId'" filter="{ _id: 'text' }" sortable="'_id'" >
+             <a ui-sref="homepage.job-detail({jobId:order._id})">{{order._id | uppercase}}</a>
+            </td>
+              <td data-title="'Type'" filter="{ 'skillname': 'text' }" sortable="'skillname'">
+                {{order.skillname}}
+            </td>
+            <td data-title="'Date'" filter="{ 'created': 'text' }" sortable="'created'" >
+            {{order.created | date:"MM.dd.yyyy h:mma"}}
+            </td>
+              <!--  <td data-title="'Location'" filter="{ 'Location': 'text' }" sortable="'Location'">
+                {{user.Location}}
+            </td> -->
+               <td data-title="'Job Status'" filter="{ 'jobstatus': 'text' }" sortable="'jobstatus'">
+                {{order.jobstatus | statusFilter}}
+            </td>
+              <td data-title="'Payment Status'" filter="{ 'pymntStatus': 'text' }" sortable="'pymntStatus'">
+                {{order.pymntStatus | statusFilter}}
+            </td>
+        </tr>
+    </table>
+</div>
+  
+</div>

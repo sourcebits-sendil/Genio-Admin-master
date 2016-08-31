@@ -1,0 +1,147 @@
+<div ng-controller="skillsCtrl">
+    <div class="content-header">
+    </div>
+    <div class="skills-menu" ng-style="style()" resize>
+        <uib-accordion close-others="oneAtATime">
+            <uib-accordion-group is-open="status.openService">
+                <uib-accordion-heading>
+                    Manage Services<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': status.openService, 'glyphicon-chevron-down': !status.openService}"></i>
+                </uib-accordion-heading>
+                <span class="text">This is just some content to illustrate fancy headings.  This is just some content to illustrate fancy headings.  This is just some content to illustrate fancy headings.</span>
+                <hr>
+                <div class="row ">
+                    <div class="col-sm-5 pull-left available services">
+                        Available Services
+                        <select multiple ng-model="selected.inactiveServices" class="form-control" ng-options="service.name for service in mainservices  |  filter:{disabled:true}">
+                        </select>
+                    </div>
+                    <div class="col-sm-2 text-center mover">
+                        <button class="btn btn-primary" ng-click="activateServices()"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                        <div class="clearfix"></div>
+                        <button class="btn btn-primary" ng-click="deActivateServices()"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                    </div>
+                    <div class="col-sm-5 pull-right active services">
+                        Active Services
+                        <select multiple ng-model="selected.activeServices" class="form-control" ng-options="service.name for service in mainservices | filter:{disabled:false}">
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <label> Set Service Rates</label>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Active Services</th>
+                                        <th>Base Fare ($)</th>
+                                        <!--   <th>Weekday</th>
+                                 <th>After Hours</th>
+                                  <th>Weekend</th>
+                                  <th>Holiday</th>
+                                 <th>After Hours</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="service in mainservices">
+                                        <td>{{service.name}}</td>
+                                        <td class="editable">
+                                            <!-- <div ng-hide="service.editing" ng-click="editItem(service)">{{service.base_fare}}</div> -->
+                                            <input ng-model="service.base_fare" placeholder="0.00" ng-pattern="/^\d{0,8}(\.\d{1,4})?$/" required/>
+                                            <!-- ng-show="service.editing" ng-blur="doneEditing(service)" -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="btn btn-default" ng-click=cancel()> Cancel</button>
+                    <button class="btn btn-primary pull-right" ng-click="saveServices()"> Save my Changes</button>
+                    <span ng-hide="changesMade">
+               <label class="pull-right text-right"><small>Changes made</small><br>
+               Don't Forget to save!
+               </label>
+               </span>
+                </div>
+            </uib-accordion-group>
+            <uib-accordion-group is-open="status.openJobType">
+                <uib-accordion-heading>
+                    Manage Job Types
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-up': status.openJobType, 'glyphicon-chevron-down': !status.openJobType}"></i>
+                </uib-accordion-heading>
+                <span class="text">
+            This is just some content to illustrate fancy headings.  This is just some content to illustrate fancy headings.  This is just some content to illustrate fancy headings.
+            </span>
+                <hr>
+                <span class="text">What would you like to do?</span>
+                <div class="row"></div>
+                <div class="btn-group">
+                    <button type="button" ng-init="tab=true" ng-click="tab=true" class="btn btn-primary" ng-class="{'active': tab}">Manage Job Types</button>
+                    <button type="button" ng-click="tab=false" class="btn btn-primary" ng-class="{'active': !tab}">Add A New Job Type</button>
+                </div>
+                <div ng-show="tab">
+                    <label> Set Service Rates</label>
+                    <div class="table-responsive ">
+                        <table class="table table-bordered  service-rates">
+                            <thead>
+                                <tr>
+                                    <th>Job Type</th>
+                                    <th>Service</th>
+                                    <th>Status</th>
+                                    <th colspan="2" class="text-center"> Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="service in subservices">
+                                <tr ng-repeat="skill in service.subskills">
+                                    <td class="editable">
+                                        <!-- <td > -->
+                                        <div ng-hide="skill.editing">{{skill.description}}</div>
+                                        <input ng-show="skill.editing" ng-model="skill.description"  required />
+                                        <!-- ng-pattern="/^[a-zA-Z ',.-]*$/" -->
+                                    </td>
+                                    <td>{{skill.tag_code }}</td>
+                                    <td>
+                                        <select class="form-control" ng-options="state.state as state.name for state in states" ng-model="skill.disabled" ng-change="updateJobTypeStatus(skill,service._id)"></select>
+                                    </td>
+                                    <td class="delete-job text-center" ng-click="confirmDeleteJobType(service._id, skill.skill_code, $parent.$index,$index)">Delete</td>
+                                    <td class="edit-job text-center" ng-hide="skill.editing" ng-click="editItem(skill)">Edit</td>
+                                    <td class="edit-job  save text-center" ng-show="skill.editing" ng-click="doneEditing(skill,service._id)">Save</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ng-show="!tab">
+                    <form name="addjob" novalidate>
+                        <label><small>* Newly added job types will be inactive by default</small></label>
+                        <div class="input-group input-group-lg">
+                            <input  id="newJobType" type="text" class="form-control text-center" name="newJobType" placeholder="Start typing.."  ng-model="new.newJobType" required> 
+                            <!-- ng-pattern="/^[a-zA-Z0-9 ',.-]*$/" -->
+                            <span class="input-group-btn">
+                        <select ng-model="new.serviceId" class="form-control" ng-options="service._id as service.name for service in subservices">
+                           <option value="" ng-disabled="!!new.serviceId">
+                              --Select service--
+                           </option>
+                        </select>
+                     </span>
+                            <span class="input-group-btn">
+                     <button class="btn btn-default" type="button" ng-disabled="addjob.$invalid || !new.serviceId"  ng-click="addJobType()">Add Job Type</button>
+                     </span>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered  service-rates">
+                            <tbody ng-repeat="service in subservices">
+                                <tr ng-repeat="skill in service.subskills | filter: new.newJobType">
+                                    <td>
+                                        <div ng-hide="skill.editing"><span>{{skill.description}} </span> <span class="pull-right">{{service.name}}</span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
+    </div>
+</div>

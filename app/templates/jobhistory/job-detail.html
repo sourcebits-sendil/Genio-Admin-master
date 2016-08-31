@@ -1,0 +1,88 @@
+<!-- ************************ -->
+<!-- VIEW JOB DETAIL -->
+<!-- *********************** -->
+<div class="job-detail" ng-controller="jobDetailCtrl">
+    <div class="content-header">
+        <div ui-sref="homepage.job-history" class="back-btn pull-left" title="Back to Job history">
+            <img src="images/Buttons/arrow-back.png" alt="Back ot job history" /> Job History
+        </div>
+    </div>
+    <div class="content">
+        <div class="col-sm-12 job">
+            <h4 ng-if="job.description1" class="pull-left">{{job.description1}}</h4>
+            <h4 class="pull-right"> ID : {{ job._id | uppercase}}</h4>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <span> <img ng-src="{{job.usrImg}}" alt="" /></span>
+                    <label>Consumer</label>
+                    <br>
+                    <span>  {{job.username}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Consumer phone</label>
+                    <br>
+                    <span>{{job.userPhone | tel}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Job Start time</label>
+                    <br>
+                    <span>{{ job.starttime |date:"MM/dd/yyyy h:mma"}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Task Address</label>
+                    <br>
+                    <address>
+                        <span ng-if="job.address.doorNo">Door No. </span> {{ job.address.doorNo}} {{ job.address.street}} {{ job.address.zipcode}}
+                    </address>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <span>  <img ng-src="{{baseURL+job.expImg}}" alt="" /></span>
+                    <label>Genio</label>
+                    <br>
+                    <span>  {{job.expname}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Genio phone</label>
+                    <br>
+                    <span>{{job.expPhone| tel}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Job end time</label>
+                    <br>
+                    <span>{{job.endtime |date:"MM/dd/yyyy h:mma" }}</span>
+                </div>
+                <div class="col-sm-3">
+                    <label>Job Status</label>
+                    <br>
+                    <span>{{job.jobstatus | statusFilter }}</span>
+                </div>
+            </div>
+            <br>
+            <div class="row" ng-if="job.invoice.length>0">
+                <div class="col-sm-3">
+                    <span>Invoice</span>
+                </div>
+                <div class="col-sm-3 invoice">
+                    <label>Description</label>
+                    <div ng-repeat="item in job.invoice">{{item.description}}</div>
+                    <label>Total</label>
+                </div>
+                <div class="col-sm-3 invoice">
+                    <label>Cost</label>
+                    <div ng-repeat="item in job.invoice">{{item.amount | currency}} </div>
+                    <div>{{total | currency}}</div>
+                </div>
+                 <div class="col-sm-3 invoice">
+                    <label>Resolve Dispute</label>
+                    <br/>
+                    <button class="btn btn-purple" ng-click="resolveGenieDispute()"  ng-if="job.expert_dispute_status == 'DISPUTED'">Genie</button> <br/>
+                    <button  class="btn btn-purple" ng-click="resolveConsumerDispute()" ng-if="job.consumer_dispute_status == 'DISPUTED'">Consumer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

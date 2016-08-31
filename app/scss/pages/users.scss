@@ -1,0 +1,336 @@
+//------------------
+//USERS SECTION
+//------------------
+.users {
+  span.pull-right{
+  margin-left:10px;
+  }
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-left: 30px;
+  }
+  .btn-group > .btn:last-child:not(:first-child),
+  .btn-group > .dropdown-toggle:not(:first-child) {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-right: 30px;
+  }
+  .action{
+    margin-left: 10px;
+  }
+  //------------------
+  //USERS CARD VIEW
+  //------------------
+  #mainbox {
+    font-family: calibri;
+    box-sizing: border-box;
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    //max-height: 680px;
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    .user-card:hover{
+        box-shadow: 0 0 10px #8881F8;
+    }
+    .user-card {
+      width: 280px;
+      box-shadow: 0 0 10px #B4B4B4;
+      min-height: 250px;
+      max-height: 335px;
+      background-color: #FFF;
+      margin: 10px;
+      border-radius: 5px;
+      .card-header {
+        height: 15px;
+        width: 100%;
+        background-color: #FFF;
+        border-radius: 5px 5px 0 0;
+      }
+      .card-top {
+        display: flex;
+        padding: 10px;
+        img {
+          border-radius: 50%;
+            width: 50px;
+            height: 50px;
+          margin-left: 10px;
+        }
+      }
+      .btn {
+        padding: 5px 15px;
+        margin: 5px;
+      }
+      .name-time-wrap{
+        width: 110px;
+        margin-left: 10px;
+        .user-name {
+          word-wrap: break-word;  
+          font-family: mullerregular_17;
+          font-size: 11px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          height: 42px;
+        }
+        .last-active{
+            font-size: 12px;
+             font-family: mullerregular_17;
+        }
+      }
+
+      .jobs {
+        font-size: 16px;
+        text-align: center;
+        font-family: mullerregular_17;
+      }
+      .contact {
+        border-top: 1px solid #E9E9E9;
+        height: 50px;
+        padding: 15px 30px;
+        color: #838D8F;
+        font-family: mullerregular_17;
+        font-size: 16px;
+        div {
+          float: left;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          margin-right: 20px;
+        }
+      }
+      .jobs-wrap div {
+        width: 50%;
+        font-family: mullerregular_7;
+        text-align: center;
+        padding: 5px;
+        color: #000000;
+      }
+      .wrap-user-stats{
+           margin: 20px 10px;}
+      .hired, .declined{
+        font-size: 15px;
+    font-family: mullerregular_17;
+    margin: 9px 5px;
+        span{
+            font-size: 18px;
+          margin-left: 5px;
+          font-family: mullerregular_7;
+        }
+      }
+        .hired span{
+          color: #66BB6A;
+
+        }
+        .declined span{
+          color: #EC407A;
+
+        }
+      .completed {
+        float: left;
+        border-top: 4px solid #66BB6A;
+        p {
+          color: #66BB6A;
+          font-size: 18px;
+          font-family: mullerregular_7;
+        }
+      }
+      .failed {
+        float: right;
+        border-top: 4px solid #EC407A;
+        p {
+          color: #EC407A;
+          font-size: 18px;
+          font-family: mullerregular_7;
+        }
+      }
+    }
+    h1 {
+      font-weight: lighter;
+      margin-left: 100px;
+      margin-top: -70px;
+    }
+    p {
+      margin: 5px 15px;
+      font-size: 14px;
+      font-family: mullerregular_7;
+      color: #7D7E81;
+      line-height: 1.25em;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 2048px) {
+   .users {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-left: 30px;
+  }
+  .btn-group > .btn:last-child:not(:first-child),
+  .btn-group > .dropdown-toggle:not(:first-child) {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-right: 30px;
+  }
+  .action{
+    margin-left: 10px;
+  }
+  //------------------
+  //USERS CARD VIEW
+  //------------------
+  #mainbox {
+    font-family: calibri;
+    box-sizing: border-box;
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    //max-height: 680px;
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    .user-card {
+      width: 225px;
+      box-shadow: 0 0 10px #B4B4B4;
+      min-height: 250px;
+      background-color: #FFF;
+      margin: 10px;
+      border-radius: 5px;
+      .card-header {
+        
+            height: 10px;
+    width: 100%;
+    background-color: #FFF;
+    color: #FFF;
+    border-radius: 5px 5px 0 0;
+    font-size: 8px;
+    font-family: mullerregular_7;
+    font-weight: bold;
+    padding-left: 5px;
+
+
+      }
+      .card-top {
+        display: flex;
+        padding: 10px;
+        img {
+          border-radius: 50%;
+          width: 50px;
+            height: 50px;
+          margin-left: 10px;
+        }
+      }
+      .btn {
+        padding: 5px 15px;
+        margin: 5px;
+      }
+      .name-time-wrap{
+        width: 110px;
+        margin-left: 10px;
+        .user-name {
+
+          font-family: mullerregular_17;
+          font-size: 11px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+           height: 42px;
+        }
+        .last-active{
+          font-family: mullerregular_3;
+    font-size: 10px;
+        }
+      }
+
+      .jobs {
+        font-size: 16px;
+        text-align: center;
+        font-family: mullerregular_17;
+      }
+      .contact {
+        border-top: 1px solid #E9E9E9;
+        height: 40px;
+        padding: 12px 20px;
+        color: #838D8F;
+        font-family: mullerregular_17;
+        font-size: 14px;
+        div {
+          float: left;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+        }
+      }
+      .jobs-wrap div {
+        width: 50%;
+        font-family: mullerregular_7;
+        text-align: center;
+        padding: 5px;
+        color: #000000;
+      }
+      .wrap-user-stats{
+           margin: 20px 10px;}
+      .hired, .declined{
+        font-size: 15px;
+    font-family: mullerregular_17;
+    margin: 9px 5px;
+        span{
+            font-size: 18px;
+          margin-left: 5px;
+          font-family: mullerregular_7;
+        }
+      }
+        .hired span{
+          color: #66BB6A;
+
+        }
+        .declined span{
+          color: #EC407A;
+
+        }
+      .completed {
+        float: left;
+        border-top: 4px solid #66BB6A;
+        p {
+          color: #66BB6A;
+          font-size: 18px;
+          font-family: mullerregular_7;
+        }
+      }
+      .failed {
+        float: right;
+        border-top: 4px solid #EC407A;
+        p {
+          color: #EC407A;
+          font-size: 18px;
+          font-family: mullerregular_7;
+        }
+      }
+    }
+            .banned {
+                background-color: #FCE8E8;
+                 .card-header {
+                    background-color: #EC407A;
+                }
+            }
+    h1 {
+      font-weight: lighter;
+      margin-left: 100px;
+      margin-top: -70px;
+    }
+    p {
+      margin: 5px 15px;
+      font-size: 14px;
+      font-family: mullerregular_7;
+      color: #7D7E81;
+      line-height: 1.25em;
+    }
+  }
+}
+}

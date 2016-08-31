@@ -1,0 +1,215 @@
+<!-- ************************ -->
+<!-- VIEW USER PROFILE -->
+<!-- *********************** -->
+<div class="view-detail" ng-controller="genieProfileCtrl">
+    <div class="content-header">
+        <!--     <div ui-sref="homepage.job-history" class="back-btn pull-left" title="Back to Job history">
+            <img src="images/Buttons/arrow-back.png" alt="Back ot job history" /> Job History
+        </div> -->
+        <div ui-sref="homepage.genies" class="back-btn pull-left">
+            <img src="images/Buttons/arrow-back.png" alt="Back ot genies" />Genies</div>
+        <div class="name text-center">
+            {{genie.name.first}} {{genie.name.last}}
+              <button class="btn btn-purple pull-right" ng-click="resendPassword()">Resend Password</button>
+        </div>
+      
+    </div>
+     <div class="scroll-div" ng-style="style()" resize>
+        <div class="profile">
+            <div class="picture pull-left" ng-style="{'background-image': 'url(' + genieImg + ')'}">
+                <!--   <img class="img-responsive" src="{{baseURL+genie.img}}"> -->
+            </div>
+            <div class="details">
+                <button type="button" name="button" class="btn btn-purple" ng-if="!genie.isban" ng-click="banUser()">BAN</button>
+                <button type="button" name="button" class="btn btn-purple" ng-if="genie.isban" ng-click="unBanUser()">UNBAN</button>
+                <button type="button" name="button" ng-click="editGenie()" class="btn btn-purple pull-right">EDIT</button>
+                <div class="clearfix">
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/phone-icon-big-30x30.png">
+                    </div> {{genie.phone | tel}}
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/work-icon-big-30x30.png">
+                    </div> {{genie.profile.comp | limitTo: 17 | lowercase}}
+                </div>
+                <div class="contact">
+                    <div title="{{genie.email}}">
+                        <img src="images/icons/mail-icon-big-30x30.png">
+                    </div>{{genie.email | limitTo: 17 | lowercase}}
+                </div>
+                <div class="rating">
+                    RATING
+                    <table>
+                        <tr ng-repeat='items in genie.rating track by $index'>
+                            <td>
+                                <div class="stars">
+                                    <span ng-repeat='item in getNumber($index+1) track by $index'>
+                  <img src="images/icons/fill-star-small.png" alt=""  />
+                </span>
+                                    <span ng-repeat='item in getNumber(4-$index)  track by $index '>
+                  <img src="images/icons/star-no-fill-small.png" alt=""  />
+                </span>
+                                </div>
+                            </td>
+                            <!--    <td>
+                                93%
+                            </td> -->
+                            <td class="text-right">
+                                {{items}} Review
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="skills">
+            <div class="title">
+                Skills
+            </div>
+            <span class="tags" ng-repeat='skill in genie.skills'>{{skill.name}}</span>
+        </div>
+        <!--   <div class="title">
+            Jobs History <span>&#8250;</span>
+        </div>
+        <h3>No jobs assigned</h3> -->
+        <!-- <div class="job-history">
+  <table>
+<thead>
+  <th>
+    Order
+  </th>
+  <th>
+    Date
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Location
+  </th>
+  <th>
+    Rate
+  </th>
+</thead>
+<tbody>
+  <tr>
+    <td>
+    No power at home
+    </td>
+    <td >
+      03.04.2015
+    </td>
+    <td>
+
+    </td>
+    <td>
+    New York,
+    Chamber St.
+    </td>
+    <td>
+    <img src="images/icons/star-no-rate.png" alt="" />
+    </td>
+  </tr>
+</tbody>
+  </table>
+</div> -->
+        <!--  <div class="title">
+            Reviews <span>&#8250;</span>
+        </div>
+        <h3>No reviews yet</h3> -->
+    </div>
+    <!-- Expert edit modal -->
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit Genie</h3>
+        </div>
+        <div class="modal-body">
+            <div class="add-expert">
+                <div class="alert alert-success alert-dismissible" role="alert" ng-show="addedGenie">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> "{{name | uppercase}}" has been added successfully.
+                </div>
+                <div>
+                </div>
+                <form class="text-center" name="addGenie" role="form" novalidate>
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                         <label for="expert-fname">First Name<sup>*</sup></label>
+                            <input disabled type="text" class="form-control" id="expert-fname" placeholder="First Name" ng-model="genie.name.first" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                         <label for="genie-lname">Last name<sup>*</sup></label>
+                            <input disabled type="text" class="form-control" id="genie-lname" placeholder="" ng-model="genie.name.last" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-sm-6 form-group">
+                         <label for="genie-company">Company Name<sup>*</sup></label>
+                            <input type="text" class="form-control" id="genie-company" placeholder="" ng-model="genie.profile.comp" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                        <label for="email">Email<sup>*</sup></label>
+                            <input ng-disabled="!genie.isFirstTime" type="email" class="form-control" name="email" id="email" placeholder="" ng-model="genie.email" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/' required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                     <label for="genie-address">Address<sup>*</sup></label>
+                        <input type="text" class="form-control" id="genie-address" placeholder="" ng-model="genie.profile.address" required>
+                    </div>
+                    <div class=" form-group">
+                        <label for="expert-phone">Phone<sup>*</sup></label>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select class="form-control" ng-options="countryCode.dial_code  as  countryCode.name  + '   ('+ countryCode.dial_code+')' for  countryCode in countryCodes" ng-model="genie.country_code" required>
+                                    <option value="" ng-disabled="!!genie.country_code">
+                                        --Select country--
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                               <input type="text" class="form-control" id="genie-phone" placeholder="Phone" phone-input ng-model="genie.phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" form-group">
+                        <label for="expert-phone">Alternative Phone (Optional)</label>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select class="form-control" ng-options="countryCode.dial_code as countryCode.name  + '   ('+ countryCode.dial_code+')' for  countryCode in countryCodes" ng-model="genie.profile.alt_country_code">
+                                    <option value="" ng-disabled="!!genie.profile.alt_country_code">
+                                        --Select country--
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="genie-alt-phone" placeholder="Optional" phone-input ng-model="genie.profile.alt_phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label>Choose Skill<sup>*</sup> <small>(*Press and hold control to select multiple options)</small> </label>
+                    <select multiple class="form-control" id="select-skill" ng-options="skill.name for skill in skillset" ng-model="genie.selectedSkills">
+                    </select>
+                    <hr>
+                    <a class="pull-left" ng-click="cancel()">Cancel</a>
+                    <button type="submit" ng-disabled="addGenie.$invalid" class="btn btn-purple pull-right" ng-click="ok()">UPDATE GENIE</button>
+                    <div class="checkbox pull-right">
+                        <!--  <label>
+                                <input type="checkbox" value="" ng-model="addAnother" >Add another</label> -->
+                    </div>
+                    <!--  -->
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- genie edit modal end-->
+</div>

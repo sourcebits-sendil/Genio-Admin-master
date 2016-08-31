@@ -1,0 +1,130 @@
+<!-- ************************ -->
+<!-- VIEW USER PROFILE -->
+<!-- *********************** -->
+<div class="view-detail" ng-controller="customerProfileCtrl">
+    <div class="content-header">
+        <!--     <div ui-sref="homepage.job-history" class="back-btn pull-left" title="Back to Job history">
+            <img src="images/Buttons/arrow-back.png" alt="Back ot job history" > Job History
+        </div> -->
+        <div ui-sref="homepage.customers" class="back-btn pull-left">
+            <img src="images/Buttons/arrow-back.png" alt="Back to customers" >Customers</div>
+        <div class="name text-center">
+           {{customer.external_user_identifiers[0].username}}  
+        </div>
+    </div>
+    <div class="scroll-div" ng-style="style()" resize>
+        <div class="profile">
+            <div class="picture pull-left"
+            ng-style="{'background-image': 'url(' + customer.external_user_identifiers[0].image_uri + ')'}">
+          <!--   <img src="{{customer.external_user_identifiers[0].image_uri}}"> -->
+            </div>
+            <div class="details">
+                <button type="button" name="button" class="btn btn-purple" ng-if="!customer.isban" ng-click="banUser()">BAN</button>
+                   <button type="button" name="button" class="btn btn-purple" ng-if="customer.isban" ng-click="unBanUser()">UNBAN</button>
+                <button type="button" name="button" class="btn btn-purple pull-right">EDIT</button>
+                <div class="clearfix">
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/phone-icon-big-30x30.png">
+                    </div><span >{{customer.phone | tel}}  </span>  <span ng-if="!customer.phone">{{customer.phone | tel}}  </span>  
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/facebook-icon-big-30x30.png">
+                    </div> <a href="http://www.facebook.com/{{customer.external_user_identifiers[0].external_user_id}}"> {{customer.external_user_identifiers[0].external_user_id}} </a>
+                  
+                </div>
+                <div class="contact">
+                    <div title="{{customer.email}}">
+                        <img src="images/icons/mail-icon-big-30x30.png">
+                    </div>{{customer.external_user_identifiers[0].email | limitTo: 17 | lowercase}}
+                </div>
+
+                <div class="rating">
+                    RATING
+                    <table>
+                        <tr ng-repeat='items in customer.rating track by $index'>
+                            <td>
+                                <div class="stars">
+                                    <span ng-repeat='item in getNumber($index+1) track by $index'>
+                  <img src="images/icons/fill-star-small.png" alt=""  >
+                </span>
+                                    <span ng-repeat='item in getNumber(4-$index)  track by $index '>
+                  <img src="images/icons/star-no-fill-small.png" alt=""  >
+                </span>
+                                </div>
+                            </td>
+                         <!--    <td>
+                                93%
+                            </td> -->
+                            <td class="text-right">
+                                 {{items}} Review
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+<!--         <div class="skills">
+            <div class="title">
+                Skills
+            </div>
+            <span class="tags" ng-repeat='skill in customer.skills'>{{skill.name}}</span>
+        </div> -->
+      <!--   <div class="title">
+            Order History <span>&#8250;</span>
+        </div>
+        <h3>No Orders made yet</h3> -->
+        <!-- <div class="job-history">
+  <table>
+<thead>
+  <th>
+    Order
+  </th>
+  <th>
+    Date
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Location
+  </th>
+  <th>
+    Rate
+  </th>
+</thead>
+<tbody>
+  <tr>
+    <td>
+    No power at home
+    </td>
+    <td >
+      03.04.2015
+    </td>
+    <td>
+
+    </td>
+    <td>
+    New York,
+    Chamber St.
+    </td>
+    <td>
+    <img src="images/icons/star-no-rate.png" alt="" >
+    </td>
+  </tr>
+</tbody>
+  </table>
+</div> -->
+
+      <!--   <div class="title">
+            Reviews <span>&#8250;</span>
+        </div>
+        <h3>No reviews yet</h3> -->
+    </div>
+
+</div>

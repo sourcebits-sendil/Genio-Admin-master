@@ -1,0 +1,104 @@
+//----------------------
+//VIEW USER PROFILE//
+// -------------------
+.view-detail {
+    .name {
+        font-size: 25px;
+        font-family: mullerregular_13;
+        color: #F4F4F4;
+    }
+    .profile {
+        display: flex;
+    }
+    .picture {
+        height: 435px;
+        width: 575px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: lavender;
+        border-radius: 5px 5px 0 0;
+        //background-size: cover;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .details {
+        margin-left: 20px;
+        width: 325px;
+        .btn-purple {
+            font-size: 15px;
+            font-family: mullerregular_17;
+            margin-bottom: 20px;
+            height: 45px;
+        }
+    }
+    .scroll-div {
+        max-height: 680px;
+        padding-bottom: 100px;
+        overflow-y: scroll;
+    }
+    .contact {
+        border-bottom: 2px solid #E0DCDC;
+        height: 55px;
+        padding: 10px 30px 10px 0px;
+        ;
+        color: #838D8F;
+        font-family: mullerregular_17;
+        font-size: 25px;
+        margin-left: 0px;
+        a{
+        color: #838D8F;
+        }
+        div {
+            float: left;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+        }
+
+    }
+    .rating {
+        padding: 25px 0px 0px 0px;
+        font-family: mullerregular_17;
+        font-size: 18px;
+        table {
+            width: 100%;
+            tr {
+                margin-top: 5px;
+                display: table;
+                width: 100%;
+            }
+            td {
+                font-family: mullerregular_9;
+                color: #000;
+            }
+        }
+    }
+    .title {
+        padding: 15px 0;
+        font-size: 25px;
+        font-family: mullerregular_13;
+        color: #887DFB;
+        span {
+            font-size: 40px;
+        }
+    }
+    .skills {
+        padding-top: 20px;
+        span {
+            border-radius: 30px;
+            background-color: #838D8F;
+            color: #FFF;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-family: mullerregular_17;
+            padding: 5px 15px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            display: inline-flex;
+        }
+    }
+}

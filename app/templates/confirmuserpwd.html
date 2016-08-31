@@ -1,0 +1,115 @@
+
+<div id='menu-bar-fixed' ng-controller='confirmuserpwdCtrl' style="display: block" >
+    <div class='container'>
+        <a class='logo' style="cursor: initial"> <img src="images/logo_retina.png" alt></a>
+    </div>
+</div>
+<section id="dashboard">
+    <div ng-if="loading" class="fadeMe">
+        <span class="cssload-container">
+            <span class="cssload-loading"><i></i></span>
+        </span>
+    </div>
+    <div class="container change-pwd">
+        <div class="row animated" style="visibility: visible; animation-name: fadeInUp; text-align:center;font-size: 18px;">
+          
+           
+            <div class='circle-icon-sm lock'>
+                        <div class='icon-sm ion-locked'></div>
+                    </div>Change Password
+        </div>
+        <form role="form" name="changePwd" id="change-pwd" novalidate ng-submit="registration.submit(registrationForm.$valid)">
+            <div class="form-group">
+                <p>
+                    <label for="newpwd">New Password</label>
+                </p>
+                <p>
+                    <input type="password" class="form-control small-input" id="pwd" name="newpwd" required ng-model="user.newPwd" ng-minlength="8">
+                    <span ng-show="changePwd.newpwd.$dirty && changePwd.newpwd.$invalid">  
+            <span class="error" ng-show="changePwd.newpwd.$error.required">Required</span></span>
+                    <br>
+                    <span class="error" ng-show="changePwd.newpwd.$error.minlength">Password should be minimum 8 charachters long</span>
+                </p>
+            </div>
+            <div class="form-group">
+                <p>
+                    <label for="confpwd">Re-enter New Password</label>
+                </p>
+                <p>
+                    <input type="password" class="form-control small-input" id="pwd" name="confpwd" required ng-model="user.confirmPwd">
+                    <span class="error" ng-if="changePwd.confpwd.$dirty && (user.confirmPwd != user.newPwd)">Password does not match</span>
+                </p>
+            </div>
+            <p>
+                <div class="error" ng-if="err">Please fill in all the fields</div>
+                <div ng-if="changed">Successfully changed password!!</div>
+            
+                <span> <div ng-click="changePassword()" class=" btn-red">Submit</div></span>
+            </p>
+    </div>
+</section>
+<style>
+.nav {
+    display: none;
+}
+.lock{
+  background-color: #178DD3 ;
+    cursor: default;
+}
+
+.lock:hover:before {
+  top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+ .change-pwd{
+    margin-top: -30px;
+  }
+#change-pwd {
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+.animated{
+  margin-top: 50px;
+}
+.row {
+    margin-bottom: 30px;
+}
+
+span {
+    margin: 30px;
+}
+
+.small-input {
+    height: 36px;
+    width: 268px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 70px
+}
+
+.ng-invalid.ng-dirty {
+    border-color: red;
+    outline-color: red;
+}
+
+.ng-valid.ng-dirty {
+    border-color: green;
+    outline-color: green;
+}
+
+.error {
+    color: red;
+}
+
+#menu-bar-fixed {
+    top: 0px !important;
+    opacity: 1 !important;
+    position: fixed !important;
+}
+</style>

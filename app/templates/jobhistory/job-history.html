@@ -1,0 +1,74 @@
+<!-- ************************ -->
+<!-- JOB-HISTORY -->
+<!-- *********************** -->
+<div class=" job-history" ng-controller="jobhistoryCtrl">
+      <div class="content-header">
+        <div  ng-click="back()" ng-show="searchIsOn" class="row back-btn pull-left">
+            <img src="images/Buttons/arrow-back.png" alt="Back to job history">Jobs History
+        </div>
+        <span class="pull-right">
+                <div id="custom-search-input">
+                    <div class="input-group">
+                        <form>
+                            <input type="search" class="form-control"  ng-model='searchkey' placeholder="Search">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-info" type="submit" ng-click="searchJob(true, searchkey)">
+                                       <i class="glyphicon glyphicon-search"></i>
+                                 </button>
+                            </span>
+                        </form>
+                     </div>
+                </div>
+        </span>
+
+</div>
+    <div class="content" ng-style="style()" resize>
+
+
+        <h3 ng-show="noData">It seems there is no job assigned yet.</h3>
+          <h3 ng-show="noSrchData">No matching data found</h3>
+        <uib-pagination total-items="totalItems" ng-model="currentPage"  ng-hide="noData || noSrchData" ng-change="pageChange()" max-size="maxSize" class="pagination-md" boundary-links="true" rotate="false"></uib-pagination>
+        <div ng-hide="noData || noSrchData" class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Order ID </th>
+                        <th>Service Type</th>
+                        <th>Date</th>
+                        <th>Job Status</th>
+                        <th>Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="record" ng-repeat="job in jobs">
+                        <td><a ui-sref="homepage.job-detail({jobId:job._id})" >{{job._id | uppercase}} </a></td>
+                        <td>{{job.skillname}}</td>
+                        <td>{{job.created | date:"h:mma MM.dd.yyyy"}}</td>
+                        <td>{{job.jobstatus| statusFilter}}</td>
+                        <td>{{job.pymntStatus | statusFilter}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  <table ng-table="tableParams"  class="table" show-filter="true" ng-hide="noData">
+        <tr ng-repeat="order in $data" class="text-center record">
+            <td data-title="'OrderId'" filter="{ _id: 'text' }" sortable="'_id'" >
+             <a ui-sref="homepage.job-detail({jobId:order._id})">{{order._id | uppercase}}</a>
+            </td>
+              <td data-title="'Type'" filter="{ 'skillname': 'text' }" sortable="'skillname'">
+                {{order.skillname}}
+            </td>
+            <td data-title="'Date'" filter="{ 'created': 'text' }" sortable="'created'" >
+            {{order.created | date:"MM.dd.yyyy h:mma"}}
+            </td>
+
+               <td data-title="'Job Status'" filter="{ 'jobstatus': 'text' }" sortable="'jobstatus'">
+                {{order.jobstatus | statusFilter}}
+            </td>
+              <td data-title="'Payment Status'" filter="{ 'pymntStatus': 'text' }" sortable="'pymntStatus'">
+                {{order.pymntStatus | statusFilter}}
+            </td>
+        </tr>
+    </table> -->
+    </div>
+</div>

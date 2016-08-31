@@ -1,0 +1,84 @@
+<!-- ************************ -->
+<!-- CUSTOMERS -->
+<!-- *********************** -->
+<div ui-view class="users" ng-controller="customersCtrl">
+    <div class="content-header">
+        <div ng-click="back()" ng-show="searchIsOn" class="row back-btn pull-left">
+            <img src="images/Buttons/arrow-back.png" alt="Back to customers">Customers
+        </div>
+        <span class="pull-right">
+                <div id="custom-search-input">
+                    <div class="input-group">
+                        <form>
+                            <input type="search" class="form-control"  ng-model='searchkey' placeholder="Search">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-info" type="submit" ng-click="searchCustomers(true, searchkey)">
+                                       <i class="glyphicon glyphicon-search"></i>
+                                 </button>
+                            </span>
+                        </form>
+                     </div>
+                </div>
+        </span>
+<span class="pull-right">
+          <label for="sel1">SORT BY </label>
+            <select class="custom-select" ng-options="sort.name for sort in sorts" 
+             ng-model="selectedSort">
+             </select>   
+        </span>
+</div>
+<div class="clearfix"></div>
+<h3 ng-show="noData">Uh oh! we do not have any Customer.</h3>
+<div id="mainbox" ng-style="style()" resize>
+    <div class="user-card" ng-class="{banned: customer.isban}" ui-sref="homepage.customer-detail({customerId:customer._id})" ng-repeat="customer in customers |  orderBy:selectedSort.key:selectedSort.reverse">
+        <div class="card-header">BANNED</div>
+        <div class="card-top">
+            <img ng-src="{{customer.external_user_identifiers[0].image_uri}}">
+            <div class="name-time-wrap">
+                <div class="user-name"> {{customer.name | limitTo : 24}}</div>
+               <div class="last-active" ng-if="customer.lastlogin"> {{customer.lastlogin|date:'h:mma MM/dd/yyyy'}}</div>
+                 <div class="last-active" ng-if="!customer.lastlogin"> New User</div>
+            </div>
+        </div>
+        <div class="wrap-user-stats">
+            <div class="hired">JOBS HIRED
+                <span>{{customer.jobs.completed}}</span>
+            </div>
+            <div class="declined">DECLINED
+                <span>{{customer.jobs.cancelled }}</span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="contact" title="{{customer.electronic_addresses[1].value}}">
+            <div>
+                <img src="images/icons/phone-icon-small-20x20.png">
+            </div><span ng-if="customer.electronic_addresses[1].value">{{customer.electronic_addresses[1].value| tel}}</span> 
+            <span ng-if="!customer.electronic_addresses[1].value">Phone not verified</span> 
+        </div>
+     <!--    <div class="contact">
+            <div>
+                <img src="images/icons/facebook-icon-small-20x20.png">
+            </div> helloitsme
+        </div> -->
+        <div class="contact" ng-if="customer.external_user_identifiers[0].email" title="{{customer.external_user_identifiers[0].email}}">
+            <div title="{{customer.external_user_identifiers[0].email}}">
+                <img src="images/icons/mail-icon-small-20x20.png">
+            </div>{{customer.external_user_identifiers[0].email | limitTo: 17}}
+        </div>
+        <div class="contact" ng-if="!customer.external_user_identifiers[0].email">
+            <div title="{{customer.external_user_identifiers[0].email}}">
+                <img src="images/icons/mail-icon-small-20x20.png">
+            </div> Email not verified
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="load-more text-center">
+        <button type="button" class="btn btn-purple action " ng-hide="noMoreData || searchIsOn" ng-click="getCustomers(1);"> LOAD MORE </button>
+        <button type="button" class="btn btn-purple action" disabled="" ng-show="noMoreData && (!noData) && !searchIsOn"> That's all </button>
+    </div>
+    <div class="load-more text-center">
+        <button type="button" class="btn btn-purple action " ng-hide="noMoreSrchData || !searchIsOn" ng-click="searchCustomers(false,searchkey,1);"> LOAD MORE </button>
+        <button type="button" class="btn btn-purple action" disabled="" ng-show="noMoreSrchData && (!noSearchData)"> That's all </button>
+    </div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+<div class="add-expert" ng-controller="addGenieCtrl">
+    <div>
+        <div ui-sref="homepage.genies" class="back-btn pull-left" ng-click="getExperts()"><img src="images/Buttons/arrow-back.png" alt="Back ot genies" />Genies</div>
+    </div>
+    <div class="form-wrap">
+          <form class="text-center" name="addGenie" role="form" novalidate>
+        <div class="form-group">
+            <input type="text" class="form-control" id="expert-fname" placeholder="First Name" ng-model="expert.name.first" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="expert-lname" placeholder="Last name" ng-model="expert.name.last" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="expert-company" placeholder="Company Name" ng-model="expert.company" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="expert-address" placeholder="Address" ng-model="expert.address" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="expert-phone" placeholder="Phone" phone-input ng-model="expert.phone" required>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="expert.email" required>
+        </div>
+        <label>Choose Skill </label>
+        <br>
+        <small>(*Press and hold control to select multiple options)</small>
+        <select multiple class="form-control" id="select-skill" ng-options="skill for skill in skills" ng-model="expert.skills" required>
+        </select>
+        <button type="submit" class="btn btn-purple" ng-disabled="addGenie.$invalid" ng-click="createExpert()">Make Genie</button>
+    </form>
+    </div>
+
+</div>

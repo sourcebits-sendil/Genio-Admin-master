@@ -1,0 +1,196 @@
+<!-- ************************ -->
+<!-- GENIES -->
+<!-- *********************** -->
+<div class="users" ng-controller="geniesCtrl">
+    <div class="content-header">
+        <span class="pull-right">
+                    <div id="custom-search-input">
+                <div class="input-group">
+                <form>
+                       <input type="search" class="form-control"  ng-model="searchkey" placeholder="Search" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit" ng-click="searchGenie(true)">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+        </form>
+    </div>
+</div>
+</span>
+<span class="pull-right">
+
+          <label  for="sel1">SORT BY </label>
+<select class="custom-select" ng-options="sort.name for sort in sorts" 
+             ng-model="selectedSort"></select>    </span>
+<div ng-click="back()" ng-show="searchIsOn" class="row back-btn pull-left">
+    <img src="images/Buttons/arrow-back.png" alt="Back to genies">Genies</div>
+<button type="button" class="btn btn-purple action" ng-show="!searchIsOn" ng-click="open()"> ADD GENIE </button>
+</div>
+<div class="clearfix"></div>
+<h3 ng-show="noDataMsg">Uh oh! we do not have any Genie. Lets add them by clicking 'ADD GENIE' button above</h3>
+<h3 ng-show="noSearchData">No search results found</h3>
+<!-- <div id="mainbox" ng-style="maxheight"> -->
+<div id="mainbox" ng-style="style()" resize>
+    <!-- style="max-height: {{windowHeight-140}}px"> window.height: {{windowHeight}} -->
+    <div class="user-card" ng-class="{banned: expert.isban}" ui-sref="homepage.genie-detail({genieId:expert._id})" ng-repeat="expert in experts  | orderBy:selectedSort.key:selectedSort.reverse">
+        <!-- ui-sref="homepage.genies.detail({genieId:expert._id})" -->
+        <div class="card-header">BANNED</div>
+        <div class="card-top">
+            <!-- <img src="images/Avatars/card-small-avatar-50x50.png" alt="" > -->
+            <img ng-src="{{baseURL+expert.thumbimg}}" alt="">
+            <div class="name-time-wrap">
+                <div class="user-name">
+                    {{expert.name.first + ' ' + expert.name.last | limitTo : 24}}
+                </div>
+                <div class="last-active" ng-if="expert.lastlogin"> {{expert.lastlogin|date:'h:mma MM/dd/yyyy'}}</div>
+                 <div class="last-active" ng-if="!expert.lastlogin"> New User</div>
+            </div>
+            <div>
+                <!-- <button disabled type="button" class="btn btn-purple pull-right">EDIT</button> -->
+            </div>
+        </div>
+        <!--       <p>
+        {{text | limitTo: 120}}
+
+      </p> -->
+        <div class="jobs">JOBS</div>
+        <div class="jobs-wrap">
+            <div class="completed">Completed
+                <p>
+                    {{expert.jobs.completed}}
+                </p>
+            </div>
+            <div class="failed">Failed
+                <p>
+                    {{expert.jobs.missed}}
+                </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="contact" title="{{expert.profile.comp}}">
+            <div>
+                <img src="images/icons/work.png">
+            </div> {{expert.profile.comp |limitTo: 18 }}
+        </div>
+        <div class="contact" title="{{expert.profile.address}}">
+            <div>
+                <img src="images/icons/location.png">
+            </div> {{expert.profile.address | limitTo: 18}}
+        </div>
+        <div class="contact" title="{{expert.phone}}">
+            <div>
+                <img src="images/icons/phone-icon-small-20x20.png">
+            </div> {{expert.phone | tel}}
+        </div>
+        <!--  <div class="contact">
+        <div>
+          <img src="images/icons/facebook-icon-small-20x20.png">
+        </div> helloitsme
+      </div> -->
+        <div class="contact" title="{{expert.email}}">
+            <div>
+                <img src="images/icons/mail-icon-small-20x20.png">
+            </div>{{expert.email | limitTo: 17 | lowercase}}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="load-more text-center">
+        <button type="button" class="btn btn-purple action " ng-hide="noMoreData || searchIsOn" ng-click="getExperts(false,1);"> LOAD MORE </button>
+        <button type="button" class="btn btn-purple action" disabled="" ng-show="noMoreData && (!noDataMsg) && !searchIsOn"> That's all </button>
+    </div>
+    <div class="load-more text-center">
+        <button type="button" class="btn btn-purple action " ng-hide="noMoreSrchData || !searchIsOn" ng-click="searchGenie(false,1);"> LOAD MORE </button>
+        <button type="button" class="btn btn-purple action" disabled="" ng-show="noMoreSrchData && (!noSearchData)"> That's all </button>
+    </div>
+</div>
+<!-- Expert creation modal -->
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header add-expert">
+        <h3 class="modal-title">Add Genie</h3>
+        <span></span>
+        <hr>
+    </div>
+    <div class="modal-body">
+        <div class="add-expert">
+            <div class="alert alert-success alert-dismissible" role="alert" ng-show="addedGenie">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> "{{name | uppercase}}" has been added successfully.
+            </div>
+            <div>
+            </div>
+            <form class="text-center" name="addGenie" role="form" novalidate>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="expert-fname">First Name<sup>*</sup></label>
+                        <input type="text" class="form-control" id="expert-fname" placeholder="First Name" ng-model="expert.name.first" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="expert-lname">Last name<sup>*</sup></label>
+                        <input type="text" class="form-control" id="expert-lname" placeholder="Last name" ng-model="expert.name.last" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-sm-6 form-group">
+                        <label for="expert-company">Company Name<sup>*</sup></label>
+                        <input type="text" class="form-control" id="expert-company" placeholder="Company Name" ng-model="expert.company" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="email">Email<sup>*</sup></label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" ng-model="expert.email" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/' required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="expert-address">Address<sup>*</sup></label>
+                    <input type="text" class="form-control" id="expert-address" placeholder="Address" ng-model="expert.address" required>
+                </div>
+                <div class=" form-group">
+                    <label for="expert-phone">Phone<sup>*</sup></label>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <select class="form-control" ng-options="countryCode.dial_code  as  countryCode.name  + '   ('+ countryCode.dial_code+')' for  countryCode in countryCodes" ng-model="expert.phoneCode" required>
+                                <option value="" ng-disabled="!!expert.phoneCode">
+                                    --Select country--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert-phone" placeholder="Phone" phone-input ng-model="expert.phone" required>
+                        </div>
+                    </div>
+                </div>
+                <div class=" form-group">
+                    <label for="expert-phone">Alternative Phone (Optional)</label>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <select class="form-control" ng-options="countryCode.dial_code as countryCode.name  + '   ('+ countryCode.dial_code+')' for  countryCode in countryCodes" ng-model="expert.altPhoneCode">
+                                <option value="" ng-disabled="!!expert.altPhoneCode">
+                                    --Select country--
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert-alt-phone" placeholder="Optional" phone-input ng-model="expert.altPhone">
+                        </div>
+                    </div>
+                </div>
+                <label>Choose Skill<sup>*</sup> <small>(*Press and hold control to select multiple ng-options)</small> </label>
+                <select multiple class="form-control" id="select-skill" ng-options="skill.name for skill in skills" ng-model="expert.skills" required>
+                </select>
+                <hr>
+                <a class="pull-left" ng-click="cancel()">Cancel</a>
+                <button type="submit" ng-disabled="addGenie.$invalid" class="btn btn-purple pull-right" ng-click="ok()">ADD GENIE</button>
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" value="" ng-model="addAnother">Add another</label>
+                </div>
+                <!--  -->
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</script>
+<!-- Expert creation modal end-->
+</div>
+<!-- Genies End  -->

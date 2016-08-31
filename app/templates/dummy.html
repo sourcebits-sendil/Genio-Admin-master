@@ -1,0 +1,130 @@
+<!-- ************************ -->
+<!-- VIEW USER PROFILE -->
+<!-- *********************** -->
+<div class="view-detail" ng-controller="genieProfileCtrl">
+    <div>{{genie.id}}
+        <div ui-sref="homepage.genies" class="back-btn pull-left">
+            <img src="images/Buttons/arrow-back.png" alt="Back ot genies" />Genies</div>
+        <div class="name text-center">
+            Artyom Tarasov {{genie.id}}
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="scroll-div">
+        <div class="profile">
+            <div class="picture pull-left">
+            </div>
+            <div class="details">
+                <button type="button" name="button" class="btn btn-purple">BAN</button>
+                <button type="button" name="button" class="btn btn-purple pull-right">DELETE</button>
+                <div class="clearfix">
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/phone-icon-big-30x30.png">
+                    </div> (111) 111-1111
+                </div>
+                <div class="contact">
+                    <div>
+                        <img src="images/icons/facebook-icon-big-30x30.png">
+                    </div> helloitsme
+                </div>
+                <div class="contact">
+                    <div title="{{expert.external_user_identifiers[0].email}}">
+                        <img src="images/icons/mail-icon-big-30x30.png">
+                    </div>helloitsme@
+                </div>
+                <div class="rating">
+                    RATING
+                    <table>
+                        <tr ng-repeat='items in [1,2,3,4,5]'>
+                            <td>
+                                <div class="stars">
+                                    <span>
+                  <img src="images/icons/fill-star-small.png" alt=""  />
+                </span>
+                                    <span>
+                  <img src="images/icons/fill-star-small.png" alt="" />
+                </span>
+                                    <span>
+                  <img src="images/icons/fill-star-small.png" alt="" />
+                </span>
+                                    <span>
+                  <img src="images/icons/fill-star-small.png" alt="" />
+                </span>
+                                    <span>
+                  <img src="images/icons/fill-star-small.png" alt="" />
+                </span>
+                                </div>
+                            </td>
+                            <td>
+                                93%
+                            </td>
+                            <td class="text-right">
+                                123 Review
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="skills">
+            <div class="title">
+                Skills
+            </div>
+            <span class="tags" ng-repeat='skill in skills'>{{skill}}</span>
+        </div>
+        <div class="title">
+            Jobs History <span>&#8250;</span>
+        </div>
+        <h3>No jobs assigned</h3>
+        <!-- <div class="job-history">
+  <table>
+<thead>
+  <th>
+    Order
+  </th>
+  <th>
+    Date
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Customer
+  </th>
+  <th>
+    Location
+  </th>
+  <th>
+    Rate
+  </th>
+</thead>
+<tbody>
+  <tr>
+    <td>
+    No power at home
+    </td>
+    <td >
+      03.04.2015
+    </td>
+    <td>
+
+    </td>
+    <td>
+    New York,
+    Chamber St.
+    </td>
+    <td>
+    <img src="images/icons/star-no-rate.png" alt="" />
+    </td>
+  </tr>
+</tbody>
+  </table>
+</div> -->
+        <div class="title">
+            Reviews <span>&#8250;</span>
+        </div>
+        <h3>No reviews yet</h3>
+    </div>
+</div>

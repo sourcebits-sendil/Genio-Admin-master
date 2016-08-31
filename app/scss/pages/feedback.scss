@@ -1,0 +1,60 @@
+//------------------
+  //FEEDBACK SECTION
+//------------------
+.feedbacks {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-left: 30px;
+  }
+  .btn-group > .btn:last-child:not(:first-child),
+  .btn-group > .dropdown-toggle:not(:first-child) {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-right: 30px;
+  }
+//------------------
+  //FEEDBACK CARD VIEW
+//------------------
+  #mainbox {
+    margin-top: 30px;
+    font-family: calibri;
+    box-sizing: border-box;
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    max-height: 680px;
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    .feedback-card {
+      width: 280px;
+      box-shadow: 0 0 10px #B4B4B4;
+      min-height: 250px;
+      padding: 15px 10px;
+      margin: 15px;
+      border-radius: 5px;
+
+      color: #fff;
+      background-color: #37A871;
+    }
+    img {
+      border-radius: 50%;
+      width: 50px;
+
+    }
+    h1 {
+      font-weight: lighter;
+      margin-left: 100px;
+      margin-top: -70px;
+    }
+    p {
+      margin: 10px;
+      font-family: segoe ui;
+      line-height: 1.4em;
+      font-size: 1.2em;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="add-expert">
+
+
+  <form class="text-center"  name="myForm"  role="form" novalidate>
+    <div class="form-group">
+
+      <input type="text" class="form-control" id="expert-fname" placeholder="First Name"  ng-model="expert.firstName" required>
+    </div>
+    <div class="form-group">
+
+      <input type="text" class="form-control" id="expert-lname" placeholder="Last name"  ng-model="expert.lastName" required>
+    </div>
+    <div class="form-group">
+
+      <input type="text" class="form-control"  id="expert-phone"  placeholder="Phone" phone-input  ng-model="expert.phone" required  >
+    </div>
+  <div class="form-group">
+
+    <input type="email" class="form-control" name="email" id="email" placeholder="Email"  ng-model="expert.email" required>
+  </div>
+{{expert.email}}
+<label>Choose Skill </label>
+<br>
+<small>(*Press and hold control to select multiple options)</small>
+  <select multiple class="form-control" id="select-skill" ng-options="skill for skill in skills" ng-model="expert.skills">
+  </select>
+
+   <button type="submit" class="btn btn-purple" ng-click="createExpert()">Make Genie</button>
+</form>
+
+</div>
