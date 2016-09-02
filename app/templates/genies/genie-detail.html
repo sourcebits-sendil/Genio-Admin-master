@@ -29,6 +29,7 @@
                     <div>
                         <img src="images/icons/phone-icon-big-30x30.png">
                     </div> {{genie.phone | tel}}
+                    <span class="glyphicon glyphicon-envelope send-message pull-right" ng-click="MessageGenio()"> </span>
                 </div>
                 <div class="contact">
                     <div>
@@ -70,6 +71,50 @@
                 Skills
             </div>
             <span class="tags" ng-repeat='skill in genie.skills'>{{skill.name}}</span>
+        </div>
+
+        <div class="job-history">
+            <div class="title">
+                Job History
+            </div>
+            
+            <h4 ng-show="noData">It seems there is no job assigned yet.</h4>
+
+            <div ng-hide="noData" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID </th>
+                            <th>Customer</th>
+                            <th>Service Type</th>
+                            <th>Date</th>
+                            <th>Job Status</th>
+                            <th>Payment Status</th>
+                            <th>Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="record" ng-repeat="job in GenioJobsHistory">
+                            <td><a ui-sref="homepage.job-detail({jobId:job._id})" >{{job._id | uppercase}} </a></td>
+                            <td>{{job.user_name}}</td>
+                            <td>{{job.skillname}}</td>
+                            <td>{{job.created | date:"h:mma MM.dd.yyyy"}}</td>
+                            <td>{{job.status}}</td>
+                            <td>
+                                <p ng-show = "job.status == 'JOB-DONE' && job.status == 'BILLING'">PAYMENT INITIATED</p>
+                                <p ng-show = "job.status == 'JOB-COMPLETED'">PAYMENT SUCCESSFULL</p>
+                                <p ng-show = "job.status == 'TRANSACTION-FAILED'">PAYMENT FAILED</p>
+                                <p ng-show = "job.status != 'JOB-DONE' && job.status != 'BILLING' && job.status != 'TRANSACTION-FAILED' && job.status != 'JOB-COMPLETED'">NO PAYMENT</p>
+                            </td>
+                            <td>{{job.invoice[2].billTotal | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <uib-pagination total-items="totalItems" ng-model="currentPage"  ng-hide="noData" ng-change="pageChange()" max-size="maxSize" class="pagination-md" boundary-links="true" rotate="false"></uib-pagination>
+            </div>
+            
         </div>
         <!--   <div class="title">
             Jobs History <span>&#8250;</span>
@@ -141,11 +186,11 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                          <label for="expert-fname">First Name<sup>*</sup></label>
-                            <input disabled type="text" class="form-control" id="expert-fname" placeholder="First Name" ng-model="genie.name.first" required>
+                            <input  type="text" class="form-control" id="expert-fname" placeholder="First Name" ng-model="genie.name.first" required>
                         </div>
                         <div class="col-sm-6 form-group">
                          <label for="genie-lname">Last name<sup>*</sup></label>
-                            <input disabled type="text" class="form-control" id="genie-lname" placeholder="" ng-model="genie.name.last" required>
+                            <input  type="text" class="form-control" id="genie-lname" placeholder="" ng-model="genie.name.last" required>
                         </div>
                     </div>
                     <div class="row">
@@ -199,7 +244,7 @@
                     <select multiple class="form-control" id="select-skill" ng-options="skill.name for skill in skillset" ng-model="genie.selectedSkills">
                     </select>
                     <hr>
-                    <a class="pull-left" ng-click="cancel()">Cancel</a>
+                    <button type="submit" class="btn btn-purple pull-left" ng-click="cancel()">CANCEL</button>
                     <button type="submit" ng-disabled="addGenie.$invalid" class="btn btn-purple pull-right" ng-click="ok()">UPDATE GENIE</button>
                     <div class="checkbox pull-right">
                         <!--  <label>
@@ -212,4 +257,37 @@
         </div>
     </script>
     <!-- genie edit modal end-->
+
+    <!-- Sending message to genio-->
+    <script type="text/ng-template" id="MessageGenio.html">
+        <div class="modal-header add-expert">
+            <h3 class="modal-title">Send Message</h3>
+            <span></span>
+            <hr>
+        </div>
+        <div class="modal-body">
+            <div class="add-expert">
+                <!-- <div class="alert alert-success alert-dismissible" role="alert" ng-show="addedGenie">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> "{{name | uppercase}}" has been added successfully.
+                </div> -->
+                <div>
+                </div>
+                <form class="text-center" name="msgGenie" role="form" novalidate>
+                   
+                    <div class="form-group">
+                        <label for="expert-address">Write your message here..<sup>*</sup></label>
+                        <textarea rows="5" cols="78" ng-model="text" required></textarea>
+                    </div>
+                   
+                    
+                    <button type="submit" class="btn btn-purple pull-left" ng-click="cancel()">Cancel</a>
+                    <button type="submit" ng-disabled="msgGenie.$invalid" class="btn btn-purple pull-right" ng-click="SendSMSGenio()">Send</button>
+                    
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- Sending message to genio end-->
 </div>

@@ -2,7 +2,7 @@
 Controller = customerProfileCtrl
 ==================================================================*/
 
-app.controller('customerProfileCtrl', ['$scope', '$rootScope', '$stateParams', '$confirm', 'appConfig', 'dataAPI', 'toaster', function($scope, $rootScope, $stateParams, $confirm, appConfig, dataAPI, toaster) {
+app.controller('customerProfileCtrl', ['$scope', '$rootScope', '$stateParams', '$confirm', 'appConfig', 'dataAPI', 'toaster', '$uibModal', function($scope, $rootScope, $stateParams, $confirm, appConfig, dataAPI, toaster, $uibModal) {
     'use strict';
 
     $scope.customer = [];
@@ -73,6 +73,96 @@ app.controller('customerProfileCtrl', ['$scope', '$rootScope', '$stateParams', '
                 });
 
             });
+    }
+
+
+    //Customer Jobs History
+    $scope.totalItems = 0;
+    $scope.currentPage = 1;
+    $scope.maxSize = 5;
+
+    $scope.pageChange = function() {
+       
+        if($scope.customerId)
+        {
+            $scope.CustomerJobhistory($scope.customerId);
+        }
+       
+    }
+
+    $scope.CustomerJobhistory = function(CustomerId) {
+            
+            
+            $scope.noData = false;
+            $rootScope.loader = true;
+
+            var page = {
+                pg: $scope.currentPage - 1,
+                pgcount: 10,
+                CustomerId: CustomerId
+            }
+            dataAPI.CustomerJobHistory(page)
+                .then(function(response) {
+
+
+                        //  var response = response.data;
+                        if (!response || response.data.length < 1) {
+                            $scope.noData = true;
+                            return
+                        } else {
+
+                            $scope.CustomerJobsHistory = response.data;
+
+                            $scope.totalItems = response.count;
+                        }
+                    },
+                    function(err) {
+                        if (err == "Access Denied - You don't have permission  ") {
+                            toaster.pop('error', "", "Your session has expired. Please re-login");
+                            return
+                        } else if (err.msg) {
+                            toaster.pop('error', "", err.msg);
+                        } else {
+                            toaster.pop('error', "", "Opps! Something went wrong. Please try again.");
+                        }
+                    }).finally(function() {
+                    $rootScope.loader = false;
+                });
+        }
+
+    if($scope.customerId)
+    {
+        $scope.CustomerJobhistory($scope.customerId);
+    }
+
+    //Message Customer
+    $scope.MessageCustomer = function(Phone,CountryCode,CustomerID) {
+        
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'MessageCustomer.html',
+            controller: 'sendMessageCtrl',
+            resolve: {
+                items: function() {
+                    var item = {};
+                    item.countryCode = CountryCode;
+                    item.phone = Phone;
+                    item.customerId = CustomerID;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
     }
 
     $scope.unBanUser = function() {

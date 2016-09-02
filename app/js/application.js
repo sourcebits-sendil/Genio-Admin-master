@@ -157,9 +157,13 @@ app.constant('appConfig', {
     //@endif
     //for production server
     // @if env='deploy'x
-    baseURL: 'http://52.33.63.9:8000/'
+    //baseURL: 'http://52.33.63.9:8000/'
         // baseURL: 'http://192.168.11.108:4000/'
         //baseURL: 'http://192.168.11.74:4000/'
+        //baseURL: 'http://192.168.11.74:4000/'
+        baseURL: 'http://52.38.106.14:5000/'
+
+
 
     //@endif
 });

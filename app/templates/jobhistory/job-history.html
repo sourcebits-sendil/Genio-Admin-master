@@ -20,6 +20,11 @@
                      </div>
                 </div>
         </span>
+        <span class="pull-right">
+          <label  for="sel1">SORT BY </label>
+            <select class="custom-select" ng-options="sort.name for sort in sorts" 
+             ng-model="selectedSort"></select>    
+        </span>
 
 </div>
     <div class="content" ng-style="style()" resize>
@@ -33,19 +38,25 @@
                 <thead>
                     <tr>
                         <th>Order ID </th>
+                        <th>Customer</th>
+                        <th>Genio</th>
                         <th>Service Type</th>
                         <th>Date</th>
                         <th>Job Status</th>
                         <th>Payment Status</th>
+                        <th>Invoice</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="record" ng-repeat="job in jobs">
+                    <tr class="record" ng-repeat="job in jobs | orderBy:selectedSort.key:selectedSort.reverse">
                         <td><a ui-sref="homepage.job-detail({jobId:job._id})" >{{job._id | uppercase}} </a></td>
+                        <td>{{job.username}}</td>
+                        <td>{{job.expname}}</td>
                         <td>{{job.skillname}}</td>
                         <td>{{job.created | date:"h:mma MM.dd.yyyy"}}</td>
                         <td>{{job.jobstatus| statusFilter}}</td>
                         <td>{{job.pymntStatus | statusFilter}}</td>
+                        <td>{{job.invoice[2].billTotal | currency}}</td>
                     </tr>
                 </tbody>
             </table>

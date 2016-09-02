@@ -22,19 +22,28 @@
           <label  for="sel1">SORT BY </label>
 <select class="custom-select" ng-options="sort.name for sort in sorts" 
              ng-model="selectedSort"></select>    </span>
+
+
 <div ng-click="back()" ng-show="searchIsOn" class="row back-btn pull-left">
     <img src="images/Buttons/arrow-back.png" alt="Back to genies">Genies</div>
-<button type="button" class="btn btn-purple action" ng-show="!searchIsOn" ng-click="open()"> ADD GENIE </button>
+
+<div class="col-sm-5">
+    <button type="button" class="btn btn-purple action" ng-show="!searchIsOn" ng-click="open()"> ADD GENIE </button>
+    <span class="glyphicon glyphicon-envelope send-message pull-right" ng-click="BroadcastGenio()" title="Broadcast" style="color:#FF4081;font-size:20px;cursor:pointer;"> </span>
 </div>
+</div>
+
 <div class="clearfix"></div>
 <h3 ng-show="noDataMsg">Uh oh! we do not have any Genie. Lets add them by clicking 'ADD GENIE' button above</h3>
 <h3 ng-show="noSearchData">No search results found</h3>
 <!-- <div id="mainbox" ng-style="maxheight"> -->
 <div id="mainbox" ng-style="style()" resize>
     <!-- style="max-height: {{windowHeight-140}}px"> window.height: {{windowHeight}} -->
-    <div class="user-card" ng-class="{banned: expert.isban}" ui-sref="homepage.genie-detail({genieId:expert._id})" ng-repeat="expert in experts  | orderBy:selectedSort.key:selectedSort.reverse">
+    <div class="user-card" ng-class="{banned: expert.isban, available : expert.isOnLine && !expert.isban , offline : !expert.isOnLine && !expert.isban}" ui-sref="homepage.genie-detail({genieId:expert._id})" ng-repeat="expert in experts  | orderBy:selectedSort.key:selectedSort.reverse">
         <!-- ui-sref="homepage.genies.detail({genieId:expert._id})" -->
-        <div class="card-header">BANNED</div>
+        <div class="card-header" ng-show="expert.isban">BANNED</div>
+        <div class="card-header" ng-show="expert.isOnLine && !expert.isban">AVAILABLE</div>
+        <div class="card-header" ng-show="!expert.isOnLine && !expert.isban">OFFLINE</div>
         <div class="card-top">
             <!-- <img src="images/Avatars/card-small-avatar-50x50.png" alt="" > -->
             <img ng-src="{{baseURL+expert.thumbimg}}" alt="">
@@ -53,14 +62,18 @@
         {{text | limitTo: 120}}
 
       </p> -->
-        <div class="jobs">JOBS</div>
+        <div class="jobs">
+            <div class="col-sm-6 text-center">JOBS</div>
+            <div class="col-sm-6 text-center"><span class="glyphicon glyphicon-envelope send-message" style="color:#FF4081;" ng-click="MessageGenio(expert._id,expert.country_code,expert.phone)"> </span></div>
+        </div>
+
         <div class="jobs-wrap">
             <div class="completed">Completed
                 <p>
                     {{expert.jobs.completed}}
                 </p>
             </div>
-            <div class="failed">Failed
+            <div class="failed">Rejected
                 <p>
                     {{expert.jobs.missed}}
                 </p>
@@ -179,7 +192,7 @@
                 <select multiple class="form-control" id="select-skill" ng-options="skill.name for skill in skills" ng-model="expert.skills" required>
                 </select>
                 <hr>
-                <a class="pull-left" ng-click="cancel()">Cancel</a>
+                <button type="submit" class="btn btn-purple pull-left" ng-click="cancel()">CANCEL</button>
                 <button type="submit" ng-disabled="addGenie.$invalid" class="btn btn-purple pull-right" ng-click="ok()">ADD GENIE</button>
                 <div class="checkbox pull-right">
                     <label>
@@ -192,5 +205,71 @@
     </div>
 </script>
 <!-- Expert creation modal end-->
+
+    <!-- Sending message to genio-->
+    <script type="text/ng-template" id="MessageGenio.html">
+        <div class="modal-header add-expert">
+            <h3 class="modal-title">Send Message</h3>
+            <span></span>
+            <hr>
+        </div>
+        <div class="modal-body">
+            <div class="add-expert">
+                <!-- <div class="alert alert-success alert-dismissible" role="alert" ng-show="addedGenie">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> "{{name | uppercase}}" has been added successfully.
+                </div> -->
+                <div>
+                </div>
+                <form class="text-center" name="msgGenie" role="form" novalidate>
+                   
+                    <div class="form-group">
+                        <label for="expert-address">Write your message here..<sup>*</sup></label>
+                        <textarea rows="5" cols="78" ng-model="text" required></textarea>
+                    </div>
+                   
+                    
+                    <button type="submit" class="btn btn-purple pull-left" ng-click="cancel()">Cancel</a>
+                    <button type="submit" ng-disabled="msgGenie.$invalid" class="btn btn-purple pull-right" ng-click="SendSMSGenio()">Send</button>
+                    
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- Sending message to genio end-->
+
+    <!-- Sending Broadcast to genio-->
+    <script type="text/ng-template" id="BroadcastGenio.html">
+        <div class="modal-header add-expert">
+            <h3 class="modal-title">Send Broadcast Message To All Genios</h3>
+            <span></span>
+            <hr>
+        </div>
+        <div class="modal-body">
+            <div class="add-expert">
+                <!-- <div class="alert alert-success alert-dismissible" role="alert" ng-show="addedGenie">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> "{{name | uppercase}}" has been added successfully.
+                </div> -->
+                <div>
+                </div>
+                <form class="text-center" name="broadcastGenie" role="form" novalidate>
+                   
+                    <div class="form-group">
+                        <label for="expert-address">Write your message here..<sup>*</sup></label>
+                        <textarea rows="5" cols="78" ng-model="text" required></textarea>
+                    </div>
+                   
+                    
+                    <button type="submit" class="btn btn-purple pull-left" ng-click="cancel()">Cancel</a>
+                    <button type="submit" ng-disabled="broadcastGenie.$invalid" class="btn btn-purple pull-right" ng-click="SendBroadcastGenio()">Send</button>
+                    
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- Sending Broadcast to genio end-->
 </div>
 <!-- Genies End  -->

@@ -13,32 +13,42 @@ app.controller('geniesCtrl', ['$scope', '$rootScope', '$window', '$state', '$htt
             reverse: false
         }, {
 
-            name: 'Name A-Z',
+            name: 'Available',
+            key: 'isOnLine',
+            reverse: true
+        }, {
+
+            name: 'Offline',
+            key: 'isOnLine',
+            reverse: false
+        }, {
+
+            name: 'Name Ascending',
             key: 'name.first',
             reverse: false
         }, {
 
-            name: 'Name Z-A',
+            name: 'Name Descending',
             key: 'name.first',
             reverse: true
         }, {
 
-            name: 'Company A-Z',
-            key: 'profile.comp',
-            reverse: false
-        }, {
-
-            name: 'Company Z-A',
-            key: 'profile.comp',
+            name: 'Jobs Completed',
+            key: 'jobs.completed',
             reverse: true
         }, {
 
-            name: 'Address A-Z',
+            name: 'Jobs Rejected',
+            key: 'jobs.missed',
+            reverse: true
+        }, {
+
+            name: 'Address Ascending',
             key: 'profile.address',
             reverse: false
         }, {
 
-            name: 'Address Z-A',
+            name: 'Address Descending',
             key: 'profile.address',
             reverse: true
         }
@@ -87,7 +97,6 @@ app.controller('geniesCtrl', ['$scope', '$rootScope', '$window', '$state', '$htt
 
     }
     $scope.getSkills();
-
 
     $scope.baseURL = appConfig.baseURL + 'admin/';
     //Get all exprerts list
@@ -178,6 +187,63 @@ app.controller('geniesCtrl', ['$scope', '$rootScope', '$window', '$state', '$htt
                     item.getExperts = $scope.getExperts;
                     item.skills = $scope.skills;
                     item.countryCodes =  $scope.countryCodes;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
+
+    }
+
+    $scope.MessageGenio = function(ExpertID,CountryCode,Phone) {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'MessageGenio.html',
+            controller: 'sendMessageCtrl',
+            resolve: {
+                items: function() {
+                    var item = {};
+                    item.countryCode = CountryCode;
+                    item.phone = Phone;
+                    item.expertId = ExpertID;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
+
+    }
+
+    $scope.BroadcastGenio = function() {
+       
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'BroadcastGenio.html',
+            controller: 'sendMessageCtrl',
+            resolve: {
+                items: function() {
+                    var item = {};
                     return item;
                 }
             },

@@ -73,8 +73,8 @@
                 </div>
                 <div class="col-sm-3 invoice">
                     <label>Cost</label>
-                    <div ng-repeat="item in job.invoice">{{item.amount | currency}} </div>
-                    <div>{{total | currency}}</div>
+                    <div ng-repeat="item in job.invoice">{{item.amount | number}} 
+                    {{item.billTotal | currency}}</div>
                 </div>
                  <div class="col-sm-3 invoice">
                     <label>Resolve Dispute</label>

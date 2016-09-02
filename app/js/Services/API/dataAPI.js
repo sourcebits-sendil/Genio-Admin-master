@@ -267,11 +267,171 @@ app.service('dataAPI', ['$rootScope', 'appConfig', '$q', '$http', 'toaster', fun
 
     };
 
+    //CREATE AN EXPERT
+    this.createExpert = function(params) {
+
+
+        var deferred = $q.defer();
+
+
+        var req = {
+            method: 'POST',
+            url: serverUrl + 'admin/experts',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            },
+            data: params
+        }
+
+        $http(req, params)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+
+        return deferred.promise;
+
+    };
+
+    //send sms Genio
+    this.GenioSms = function(params) {
+
+
+        var deferred = $q.defer();
+
+
+        var req = {
+            method: 'POST',
+            url: serverUrl + 'admin/experts/'+ params.expertId +'/sms',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            },
+            data: params
+        }
+
+        $http(req, params)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+
+        return deferred.promise;
+
+    };
+
+    //send sms Customer
+    this.CustomerSms = function(params) {
+
+        var deferred = $q.defer();
+
+
+        var req = {
+            method: 'POST',
+            url: serverUrl + 'admin/customers/'+ params.customerId +'/sms',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            },
+            data: params
+        }
+
+        $http(req, params)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+
+        return deferred.promise;
+
+    };
+
+    // Genio Jobhistory
+    this.GenioJobHistory = function(params) {
+
+        var req = {
+            method: 'GET',
+            url: serverUrl + 'admin/servicerequests/expert/' + params.GenieId + '?pg=' + params.pg + '&pgcount=' + params.pgcount,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            }
+            //data: { test: 'test' }
+        }
+
+        var deferred = $q.defer();
+
+        $http(req)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+        return deferred.promise;
+    };
+    
+    //Customer JobHistory
+    this.CustomerJobHistory = function(params) {
+        var req = {
+            method: 'GET',
+            url: serverUrl + 'admin/servicerequests/consumer/' + params.CustomerId + '?pg=' + params.pg + '&pgcount=' + params.pgcount,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            }
+            //data: { test: 'test' }
+        }
+
+        var deferred = $q.defer();
+
+        $http(req)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+        return deferred.promise;
+    };
+    
+
     this.expretsList = function(params) {
 
         var req = {
             method: 'GET',
             url: serverUrl + 'admin/experts?pg=' + params.pg + '&pgcount=' + params.pgcount,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $rootScope.authToken
+            }
+            //data: { test: 'test' }
+        }
+
+        var deferred = $q.defer();
+
+        $http(req)
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+        return deferred.promise;
+    };
+
+    this.expretsOnlineCount= function(params) {
+
+        var req = {
+            method: 'GET',
+            url: serverUrl + 'admin/experts/online/count',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': $rootScope.authToken

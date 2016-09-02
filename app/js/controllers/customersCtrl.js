@@ -2,7 +2,7 @@
 Controller = userCtrl
 ==================================================================*/
 
-app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', 'dataAPI', 'toaster', function($scope, $rootScope, $timeout, $state,  dataAPI, toaster) {
+app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', 'dataAPI', 'toaster', '$uibModal', function($scope, $rootScope, $timeout, $state,  dataAPI, toaster, $uibModal) {
     'use strict';
     $scope.searchkey= "";
     $scope.sorts = [
@@ -14,13 +14,23 @@ app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', '
         },
         {
 
-            name: 'Name A-Z',
+            name: 'Name Ascending',
             key: 'name',
             reverse: false
         }, {
 
-            name: 'Name Z-A',
+            name: 'Name Descending',
             key: 'name',
+            reverse: true
+        }, {
+
+            name: 'Jobs Hired',
+            key: 'jobs.completed',
+            reverse: true
+        }, {
+
+            name: 'Jobs Canceled',
+            key: 'jobs.cancelled',
             reverse: true
         }
     ];
@@ -115,6 +125,63 @@ app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', '
 
 
         };
+
+
+    $scope.MessageCustomer = function(Phone, CountryCode, CustomerID) {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'MessageCustomer.html',
+            controller: 'sendMessageCtrl',
+            resolve: {
+                items: function() {
+                    var item = {};
+                    item.countryCode = CountryCode;
+                    item.phone = Phone;
+                    item.customerId = CustomerID;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
+    }
+
+    $scope.BroadcastCustomer = function() {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'BroadcastCustomer.html',
+            controller: 'sendMessageCtrl',
+            resolve: {
+                items: function() {
+                    var item = {};
+                    //item.countryCode = CountryCode;
+                    //item.phone = Phone;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    }
 
     $scope.back = function(){
            $state.go('homepage.customers', {}, {

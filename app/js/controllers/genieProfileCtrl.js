@@ -10,6 +10,7 @@ app.controller('genieProfileCtrl', ['$scope', '$rootScope', '$state', '$statePar
 
     $scope.baseURL = appConfig.baseURL + 'admin/';
 
+
     function expretsDetail() {
         $rootScope.loader = true;
         dataAPI.expretsDetail($scope.genieId)
@@ -84,8 +85,97 @@ app.controller('genieProfileCtrl', ['$scope', '$rootScope', '$state', '$statePar
             });
     }
 
+    //Genio Job History
+
+    $scope.totalItems = 0;
+    $scope.currentPage = 1;
+    $scope.maxSize = 5;
+
+    $scope.pageChange = function() {
+       
+        if($scope.genieId)
+        {
+            $scope.GenioJobhistory($scope.genieId);
+        }
+       
+    }
+
+    $scope.GenioJobhistory = function(GenieId) {
+            
+            
+            $scope.noData = false;
+            $rootScope.loader = true;
+
+            var page = {
+                pg: $scope.currentPage - 1,
+                pgcount: 10,
+                GenieId: GenieId
+            }
+            dataAPI.GenioJobHistory(page)
+                .then(function(response) {
 
 
+                        //  var response = response.data;
+                        if (!response || response.data.length < 1) {
+                            $scope.noData = true;
+                            return
+                        } else {
+
+                            $scope.GenioJobsHistory = response.data;
+
+                            $scope.totalItems = response.count;
+                        }
+                    },
+                    function(err) {
+                        if (err == "Access Denied - You don't have permission  ") {
+                            toaster.pop('error', "", "Your session has expired. Please re-login");
+                            return
+                        } else if (err.msg) {
+                            toaster.pop('error', "", err.msg);
+                        } else {
+                            toaster.pop('error', "", "Opps! Something went wrong. Please try again.");
+                        }
+                    }).finally(function() {
+                    $rootScope.loader = false;
+                });
+        }
+
+    if($scope.genieId)
+    {
+        $scope.GenioJobhistory($scope.genieId);
+    }
+    
+
+    //Message Genio
+    $scope.MessageGenio = function(size) {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'MessageGenio.html',
+            controller: 'sendMessageCtrl',
+            size: size,
+            resolve: {
+                items: function() {
+                    var item = {};
+                    item.countryCode = $scope.genie.country_code;
+                    item.phone = $scope.genie.phone;
+                    item.expertId = $scope.genie._id;
+                    return item;
+                }
+            },
+            backdrop: 'static'
+        });
+
+
+        modalInstance.result.then(function(selectedItem) {
+            // console.log(selectedItem);
+            // $scope.createExpert(selectedItem);
+            // $scope.getExperts();
+        }, function() {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
+    }
 
 
     $scope.editGenie = function(size) {
@@ -216,6 +306,36 @@ app.controller('genieProfileCtrl', ['$scope', '$rootScope', '$state', '$statePar
                 });
 
             });
+    }
+
+    function Jobhistory() {
+        $rootScope.loader = true;
+        dataAPI.Jobhistory($scope.genieId)
+            .then(function(response) {
+                    if (!response || response.length < 1 || response.data.length < 1) {
+                        $scope.noData = true;
+                        return
+                    } else {
+                        $scope.Jobhistory = response.data;
+                    }
+                },
+                function(err) {
+                    if (err == "Access Denied - You don't have permission  ") {
+                        toaster.pop('error', "", "Your session has expired. Please re-login");
+                        return
+                    } else if (err.msg) {
+                        toaster.pop('error', "", err.msg);
+                    } else {
+                        toaster.pop('error', "", "Opps! Something went wrong. Please try again.");
+                    }
+                }).finally(function() {
+                $rootScope.loader = false;
+            });
+    }
+
+    if($scope.genieId)
+    {
+        //Jobhistory();
     }
 
 

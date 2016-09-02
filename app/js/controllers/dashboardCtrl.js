@@ -21,6 +21,25 @@ app.controller('dashboardCtrl', ['$scope', '$location', '$state', '$cookies', 'a
                 function(error) {}
             )
     }
+
+    $scope.expretsOnlineCount = function() {
+        dataAPI.expretsOnlineCount()
+            .then(
+                function(response) {
+                    if ((response.status == "success") && response.data) {
+                        $scope.OnlineGenioCount = response.data.count
+    
+                    } else if (response.status == "failure") {
+
+                        toaster.pop('error', "", "Opps! Some error occured, Please try again");
+                    }
+                },
+                function(error) {}
+            )
+    }
+
+    
+
     $scope.jobsCount = function() {
         dataAPI.jobsCount()
             .then(
@@ -95,6 +114,7 @@ app.controller('dashboardCtrl', ['$scope', '$location', '$state', '$cookies', 'a
         $scope.jobsCount();
         $scope.jobsTrend();
         $scope.servicesTrend();
+        $scope.expretsOnlineCount();
     }
 
     getStats();

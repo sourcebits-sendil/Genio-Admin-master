@@ -36,6 +36,7 @@
     overflow-y: scroll;
     .user-card:hover{
         box-shadow: 0 0 10px #8881F8;
+        cursor:pointer;
     }
     .user-card {
       width: 280px;
@@ -317,6 +318,18 @@
                 background-color: #FCE8E8;
                  .card-header {
                     background-color: #EC407A;
+                }
+            }
+            .available {
+                background-color: #D1F1D0;
+                 .card-header {
+                    background-color: #66BB6A;
+                }
+            }
+            .offline {
+                /*background-color: #D1F1D0;*/
+                 .card-header {
+                    background-color: #8A96A2;
                 }
             }
     h1 {

@@ -5,6 +5,41 @@ Controller = jobhistoryCtrl
 app.controller("jobhistoryCtrl", ['$scope', '$rootScope', '$state', '$filter', 'dataAPI', 'toaster',
     function($scope, $rootScope,   $state,  $filter, dataAPI, toaster) {
 
+        $scope.sorts = [{
+
+                name: 'None',
+                key: '',
+                reverse: false
+            }, {
+                name: 'Customer Ascending',
+                key: 'username',
+                reverse: false
+            }, {
+                name: 'Customer Descending',
+                key: 'username',
+                reverse: true
+            }, {
+                name: 'Payment Success',
+                key: 'pymntStatus',
+                reverse: true
+            }, {
+                name: 'Payment Failure',
+                key: 'pymntStatus',
+                reverse: false
+            }, {
+                name: 'Date Descending',
+                key: 'date',
+                reverse: true
+            }, {
+                name: 'Date Ascending',
+                key: 'date',
+                reverse: false
+            }
+
+        ];
+
+
+        $scope.selectedSort = $scope.sorts[0];
 
         $scope.totalItems = 0;
         $scope.currentPage = 1;
