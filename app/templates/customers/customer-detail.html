@@ -44,6 +44,9 @@
 
                 <div class="rating">
                     RATING
+                    <div class="cumulative-rating" ng-show="customer.rating.STAR_1 || customer.rating.STAR_2 || customer.rating.STAR_3 || customer.rating.STAR_4 || customer.rating.STAR_5">
+                        Average   {{((customer.rating.STAR_1) * 1 + (customer.rating.STAR_2) * 2 + (customer.rating.STAR_3) * 3 + (customer.rating.STAR_4) * 4 + (customer.rating.STAR_5) * 5) / ((customer.rating.STAR_1) + (customer.rating.STAR_2) + (customer.rating.STAR_3) + (customer.rating.STAR_4) + (customer.rating.STAR_5)) | limitTo: 3}}
+                    </div>
                     <table>
                         <tr ng-repeat='items in customer.rating track by $index'>
                             <td>

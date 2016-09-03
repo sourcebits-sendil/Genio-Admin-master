@@ -42,7 +42,10 @@
                     </div>{{genie.email | limitTo: 17 | lowercase}}
                 </div>
                 <div class="rating">
-                    RATING
+                    RATING 
+                    <div class="cumulative-rating" ng-show="genie.rating.STAR_1 || genie.rating.STAR_2 || genie.rating.STAR_3 || genie.rating.STAR_4 || genie.rating.STAR_5">
+                        Average   {{((genie.rating.STAR_1) * 1 + (genie.rating.STAR_2) * 2 + (genie.rating.STAR_3) * 3 + (genie.rating.STAR_4) * 4 + (genie.rating.STAR_5) * 5) / ((genie.rating.STAR_1) + (genie.rating.STAR_2) + (genie.rating.STAR_3) + (genie.rating.STAR_4) + (genie.rating.STAR_5)) | limitTo: 3}}
+                    </div>
                     <table>
                         <tr ng-repeat='items in genie.rating track by $index'>
                             <td>
