@@ -2,7 +2,7 @@
 Controller = userCtrl
 ==================================================================*/
 
-app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', 'dataAPI', 'toaster', '$uibModal', function($scope, $rootScope, $timeout, $state,  dataAPI, toaster, $uibModal) {
+app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', 'dataAPI', 'toaster', '$uibModal', 'appConfig', function($scope, $rootScope, $timeout, $state,  dataAPI, toaster, $uibModal, appConfig) {
     'use strict';
     $scope.searchkey= "";
     $scope.sorts = [
@@ -36,6 +36,7 @@ app.controller('customersCtrl', ['$scope', '$rootScope', '$timeout', '$state', '
     ];
     $scope.selectedSort = $scope.sorts[0];
 
+    $scope.CustomImgUrl = appConfig.baseURL + 'admin/';
 
     //Get all exprerts list
     $scope.pageNumber = 0;

@@ -37,7 +37,9 @@
     <div class="user-card" ng-class="{banned: customer.isban}" ui-sref="homepage.customer-detail({customerId:customer._id})" ng-repeat="customer in customers |  orderBy:selectedSort.key:selectedSort.reverse">
         <div class="card-header">BANNED</div>
         <div class="card-top">
-            <img ng-src="{{customer.external_user_identifiers[0].image_uri}}">
+            <img ng-show="customer.thumb_image" ng-src="{{CustomImgUrl + customer.external_user_identifiers[0].image_uri}}">
+            <img ng-show="!customer.thumb_image" ng-src="{{customer.external_user_identifiers[0].image_uri}}">
+            <!-- <img ng-src="{{customer.external_user_identifiers[0].image_uri}}"> -->
             <div class="name-time-wrap">
                 <div class="user-name"> {{customer.name | limitTo : 24}}</div>
                <div class="last-active" ng-if="customer.lastlogin"> {{customer.lastlogin|date:'h:mma MM/dd/yyyy'}}</div>
