@@ -23,6 +23,11 @@ app.controller('geniesCtrl', ['$scope', '$rootScope', '$window', '$state', '$htt
             reverse: false
         }, {
 
+            name: 'Banned',
+            key: 'isban',
+            reverse: true
+        }, {
+
             name: 'Name Ascending',
             key: 'name.first',
             reverse: false
